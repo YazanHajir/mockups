@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acklin Metall- und Stahlbau AG — Zug · Seit 1877</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dunkel:     #111116;
+      --stahl:      #1e1e26;
+      --stahl-mid:  #2e2e3a;
+      --stahl-hell: #4a4a58;
+      --akzent:     #c8460a;
+      --akzentHell: #e05a1a;
+      --silber:     #a8a8b8;
+      --creme:      #f3f1ed;
+      --hellCreme:  #f9f8f5;
+      --text:       #111116;
+      --muted:      #6a6a7a;
+      --weiss:      #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--hellCreme);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(17, 17, 22, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 64px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(200, 70, 10, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-mark {
+      width: 42px; height: 42px;
+      background: var(--akzent);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+
+    .logo-text {
+      color: #fff;
+      font-size: 0.97rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.35);
+      font-weight: 400;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
+    nav a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--akzentHell); }
+
+    .nav-cta {
+      background: var(--akzent);
+      color: #fff !important;
+      padding: 9px 22px;
+      border-radius: 3px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--akzentHell) !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: var(--dunkel);
+      display: grid;
+      grid-template-columns: 55% 45%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 160px 80px 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .hero-eyebrow .line { width: 44px; height: 1px; background: var(--akzent); }
+    .hero-eyebrow span {
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--akzent);
+      font-weight: 500;
+    }
+
+    .hero-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      line-height: 1.0;
+      color: #fff;
+      margin-bottom: 32px;
+    }
+
+    .hero-left h1 em { font-style: italic; color: var(--akzentHell); }
+
+    .hero-left h1 .year {
+      font-size: 1.4rem;
+      font-weight: 400;
+      font-style: normal;
+      color: rgba(255,255,255,0.25);
+      display: block;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .hero-left p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+      max-width: 440px;
+      margin-bottom: 52px;
+    }
+
+    .hero-actions { display: flex; align-items: center; gap: 28px; }
+
+    .btn-akzent {
+      background: var(--akzent);
+      color: #fff;
+      padding: 15px 34px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+      letter-spacing: 0.3px;
+    }
+    .btn-akzent:hover {
+      background: var(--akzentHell);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(200,70,10,0.35);
+    }
+
+    .btn-ghost {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.88rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--akzentHell); }
+    .btn-ghost::after { content: '→'; }
+
+    /* ─── HERO RIGHT ─── */
+    .hero-right {
+      position: relative;
+      background: var(--stahl);
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 40px,
+          rgba(255,255,255,0.015) 40px,
+          rgba(255,255,255,0.015) 41px
+        );
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(200,70,10,0.08), transparent);
+    }
+
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 80px 56px;
+      z-index: 2;
+    }
+
+    .since-badge {
+      background: rgba(200,70,10,0.12);
+      border: 1px solid rgba(200,70,10,0.35);
+      border-radius: 12px;
+      padding: 36px 44px;
+      text-align: center;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .since-badge .year-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: var(--akzent);
+      line-height: 1;
+      display: block;
+    }
+
+    .since-badge .since-label {
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 12px;
+      display: block;
+    }
+
+    .since-badge .since-sub {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.22);
+      margin-top: 8px;
+    }
+
+    .gen-badge {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .gen-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: var(--akzent);
+      line-height: 1;
+    }
+
+    .gen-text strong {
+      display: block;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .gen-text span {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.8rem;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .stat-pill {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .stat-pill .s-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+      display: block;
+    }
+
+    .stat-pill .s-lbl {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 1px;
+      margin-top: 3px;
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--akzent);
+      padding: 20px 64px;
+      display: flex;
+      justify-content: center;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .trust-item { display: flex; align-items: center; gap: 12px; }
+
+    .trust-item .ti-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .trust-item .ti-lbl {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .trust-sep { width: 1px; height: 30px; background: rgba(255,255,255,0.2); }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 110px 80px; }
+    .section-bg { background: var(--creme); }
+
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .eyebrow .line { width: 32px; height: 1px; background: var(--akzent); }
+    .eyebrow span { font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase; color: var(--akzent); font-weight: 500; }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+
+    h2.s-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--stahl);
+      line-height: 1.1;
+    }
+
+    /* ─── LEISTUNGEN ─── */
+    .leistungen-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(17,17,22,0.08);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .l-card {
+      background: #fff;
+      padding: 36px 28px;
+      transition: background 0.25s;
+      cursor: default;
+    }
+
+    .l-card:hover { background: var(--stahl); }
+    .l-card:hover .l-title, .l-card:hover .l-text { color: #fff; }
+    .l-card:hover .l-num { color: rgba(255,255,255,0.05); }
+    .l-card:hover .l-icon { filter: grayscale(0); opacity: 1; }
+
+    .l-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(17,17,22,0.06);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.25s;
+    }
+
+    .l-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      display: block;
+      opacity: 0.7;
+      transition: opacity 0.25s;
+    }
+
+    .l-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--stahl);
+      margin-bottom: 10px;
+      transition: color 0.25s;
+    }
+
+    .l-text {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.7;
+      transition: color 0.25s;
+    }
+
+    /* ─── GESCHICHTE ─── */
+    .geschichte {
+      background: var(--stahl);
+      padding: 110px 80px;
+    }
+
+    .geschichte-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .geschichte h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 28px;
+    }
+
+    .geschichte h2 em { font-style: italic; color: var(--akzentHell); }
+
+    .geschichte p {
+      color: rgba(255,255,255,0.52);
+      line-height: 1.85;
+      font-size: 0.97rem;
+      margin-bottom: 20px;
+    }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(200,70,10,0.25);
+    }
+
+    .t-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 20px;
+      padding: 22px 0;
+      position: relative;
+    }
+
+    .t-dot {
+      width: 44px; height: 44px;
+      background: rgba(200,70,10,0.15);
+      border: 1px solid rgba(200,70,10,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--akzent);
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .t-content h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--akzent);
+      margin-bottom: 5px;
+    }
+
+    .t-content p {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* ─── WERTE ─── */
+    .werte-section {
+      background: var(--hellCreme);
+      padding: 110px 80px;
+    }
+
+    .werte-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+      background: rgba(17,17,22,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .w-card {
+      background: #fff;
+      padding: 40px 28px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.25s;
+    }
+
+    .w-card:hover { border-color: var(--akzent); }
+
+    .w-icon { font-size: 1.8rem; margin-bottom: 18px; display: block; }
+
+    .w-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--stahl);
+      margin-bottom: 10px;
+    }
+
+    .w-text {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── TESTIMONIAL ─── */
+    .testimonial-section {
+      background: var(--creme);
+      padding: 110px 80px;
+      text-align: center;
+    }
+
+    .testimonial-wrap { max-width: 740px; margin: 0 auto; }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      line-height: 0.5;
+      color: var(--akzent);
+      opacity: 0.3;
+      margin-bottom: 36px;
+      display: block;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--stahl);
+      line-height: 1.55;
+      margin-bottom: 36px;
+    }
+
+    .quote-author {
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── KONTAKT ─── */
+    .kontakt {
+      background: var(--dunkel);
+      padding: 110px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .kontakt-links h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .kontakt-links h2 em { color: var(--akzentHell); font-style: italic; }
+
+    .kontakt-links p {
+      color: rgba(255,255,255,0.45);
+      line-height: 1.78;
+      font-size: 0.93rem;
+      margin-bottom: 40px;
+    }
+
+    .kontakt-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+
+    .kontakt-list li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.93rem;
+    }
+
+    .k-icon {
+      width: 40px; height: 40px;
+      background: rgba(200,70,10,0.12);
+      border: 1px solid rgba(200,70,10,0.25);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .kontakt-form {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 44px;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 5px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group select option { background: var(--stahl); color: #fff; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--akzent); }
+    .form-group textarea { height: 90px; resize: none; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--akzent);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 5px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover { background: var(--akzentHell); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #08080c;
+      color: rgba(255,255,255,0.2);
+      padding: 28px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.77rem;
+    }
+
+    footer span { color: var(--akzent); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1000px) {
+      nav { padding: 0 24px; }
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 120px 28px 60px; }
+      .hero-left h1 { font-size: 3.2rem; }
+      .hero-right { min-height: 320px; }
+      .trust-bar { gap: 28px; flex-wrap: wrap; padding: 20px 24px; }
+      .section { padding: 72px 28px; }
+      .leistungen-grid { grid-template-columns: repeat(2, 1fr); }
+      .geschichte { padding: 72px 28px; }
+      .geschichte-inner { grid-template-columns: 1fr; gap: 48px; }
+      .werte-section { padding: 72px 28px; }
+      .werte-grid { grid-template-columns: 1fr 1fr; }
+      .testimonial-section { padding: 72px 28px; }
+      .quote-text { font-size: 1.2rem; }
+      .kontakt { grid-template-columns: 1fr; padding: 72px 28px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">A</div>
+    <div class="logo-text">
+      Acklin Metall- und Stahlbau AG
+      <span>Zug · Seit 1877</span>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#leistungen">Produkte</a></li>
+    <li><a href="#geschichte">Geschichte</a></li>
+    <li><a href="#werte">Qualität</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="nav-cta">Anfrage stellen</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="line"></div>
+      <span>Metall- und Stahlbau · Zug · Schweiz</span>
+    </div>
+    <h1>
+      <span class="year">Seit 1877</span>
+      Stahl.<br>Präzision.<br><em>Acklin.</em>
+    </h1>
+    <p>Acklin Metall- und Stahlbau AG — Handwerkstradition aus Zug seit 1877. Fünf Generationen Kompetenz in Stahl, Metall und Präzisionsarbeit. Vom Geländer bis zur Stahlkonstruktion.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-akzent">Projekt anfragen</a>
+      <a href="#leistungen" class="btn-ghost">Produkte ansehen</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="since-badge">
+        <span class="year-big">1877</span>
+        <span class="since-label">Gegründet in Zug</span>
+        <div class="since-sub">147 Jahre Handwerkstradition</div>
+      </div>
+      <div class="gen-badge">
+        <div class="gen-num">5.</div>
+        <div class="gen-text">
+          <strong>Generation Acklin</strong>
+          <span>Robert Acklin · Geschäftsführer</span>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-pill">
+          <span class="s-val">Zug</span>
+          <div class="s-lbl">Standort</div>
+        </div>
+        <div class="stat-pill">
+          <span class="s-val">100%</span>
+          <div class="s-lbl">Schweizer Betrieb</div>
+        </div>
+        <div class="stat-pill">
+          <span class="s-val">KMU</span>
+          <div class="s-lbl">Persönlich</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="ti-num">147</div>
+    <div class="ti-lbl">Jahre<br>Erfahrung</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">5.</div>
+    <div class="ti-lbl">Generation<br>Familienbetrieb</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">12+</div>
+    <div class="ti-lbl">Produkt-<br>bereiche</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">Zug</div>
+    <div class="ti-lbl">Regionaler<br>Betrieb</div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="section section-bg" id="leistungen">
+  <div class="section-header">
+    <div>
+      <div class="eyebrow"><div class="line"></div><span>Was wir bauen</span></div>
+      <h2 class="s-title">Unsere Produkte</h2>
+    </div>
+  </div>
+  <div class="leistungen-grid">
+    <div class="l-card">
+      <div class="l-num">01</div>
+      <div class="l-icon">🏗️</div>
+      <div class="l-title">Stahlbauten</div>
+      <div class="l-text">Tragende Stahlkonstruktionen für Industrie, Gewerbe und Wohnbau — massgenau geplant und solide ausgeführt.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">02</div>
+      <div class="l-icon">🚪</div>
+      <div class="l-title">Türen & Brandschutz</div>
+      <div class="l-text">Einzel- und Brandschutztüren nach Norm — zuverlässig, langlebig und einbaufertig geliefert.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">03</div>
+      <div class="l-icon">🪜</div>
+      <div class="l-title">Treppen</div>
+      <div class="l-text">Stahltreppen für innen und aussen — vom einfachen Aufstieg bis zur repräsentativen Konstruktion.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">04</div>
+      <div class="l-icon">🛡️</div>
+      <div class="l-title">Geländer</div>
+      <div class="l-text">Geländer und Absturzsicherungen in Stahl und Metall — sicher, normkonform und optisch überzeugend.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">05</div>
+      <div class="l-icon">🏠</div>
+      <div class="l-title">Balkone</div>
+      <div class="l-text">Balkone in Stahl- und Metallkonstruktion — präzise geplant, wetterfest und langlebig.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">06</div>
+      <div class="l-icon">🏢</div>
+      <div class="l-title">Fronten & Fassaden</div>
+      <div class="l-text">Metallverkleidungen, Fassadenelemente und Fronten — für moderne und klassische Gebäude.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">07</div>
+      <div class="l-icon">☂️</div>
+      <div class="l-title">Vordächer & Unterstände</div>
+      <div class="l-text">Überdachungen aus Stahl und Glas — für Eingänge, Velounterstände und Aussenbereiche.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">08</div>
+      <div class="l-icon">🪟</div>
+      <div class="l-title">Tore & Fenster</div>
+      <div class="l-text">Stahl- und Metalltore, Fensterrahmen und Windschutzverglasungen — funktional und massgenau.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GESCHICHTE -->
+<section class="geschichte" id="geschichte">
+  <div class="geschichte-inner">
+    <div>
+      <div class="eyebrow"><div class="line"></div><span style="color:var(--akzentHell)">Unsere Wurzeln</span></div>
+      <h2>147 Jahre<br><em>Handwerk aus Zug.</em></h2>
+      <p>Was 1877 als Schlosser- und Mechanikerbetrieb in der Zuger Altstadt begann, ist heute eines der traditionsreichsten Metallbauunternehmen der Region — fünf Generationen, eine Familie, ein Handwerk.</p>
+      <p>Jede Generation hat die Firma weiterentwickelt: vom Schlosserbetrieb über die Bauschlosserei bis zum modernen Metall- und Stahlbau. Die Werte geblieben dieselben: Qualität, Verlässlichkeit und persönliche Verantwortung.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot">1877</div>
+        <div class="t-content">
+          <h4>Gründung durch Johann Acklin</h4>
+          <p>«Joh. Acklin Schlosser und Mechaniker» an der Unteraltstadt 36 — der Beginn einer langen Familiengeschichte.</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">1954</div>
+        <div class="t-content">
+          <h4>Dritte Generation: Hans Acklin</h4>
+          <p>Übernahme und Ausbau als «Hans Acklin Bauschlosserei» — Spezialisierung auf Bauschlosserarbeiten.</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">1986</div>
+        <div class="t-content">
+          <h4>Umzug & AG-Gründung</h4>
+          <p>Neuer Standort an der Industriestrasse 59. Daniel Acklin (4. Generation) führt den Betrieb als AG weiter.</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">2020</div>
+        <div class="t-content">
+          <h4>Fünfte Generation: Robert Acklin</h4>
+          <p>Robert Acklin übernimmt die Geschäftsführung — und führt das Unternehmen mit modernem Blick und bewährtem Handwerk.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WERTE -->
+<section class="werte-section" id="werte">
+  <div>
+    <div class="eyebrow"><div class="line"></div><span>Unser Versprechen</span></div>
+    <h2 class="s-title" style="margin-top:14px">Was uns auszeichnet</h2>
+  </div>
+  <div class="werte-grid">
+    <div class="w-card">
+      <span class="w-icon">⚙️</span>
+      <div class="w-title">Präzision</div>
+      <div class="w-text">Jedes Stück wird massgenau gefertigt. Kein Kompromiss bei Mass, Material oder Ausführung.</div>
+    </div>
+    <div class="w-card">
+      <span class="w-icon">🤝</span>
+      <div class="w-title">Persönlicher Kontakt</div>
+      <div class="w-text">Sie arbeiten direkt mit dem Betrieb — kein Vermittler, kein Callcenter. Direkter Draht von der Anfrage bis zur Abnahme.</div>
+    </div>
+    <div class="w-card">
+      <span class="w-icon">📍</span>
+      <div class="w-title">Regional verwurzelt</div>
+      <div class="w-text">Seit 1877 in Zug. Wir kennen die Region, die Anforderungen und unsere Kunden persönlich.</div>
+    </div>
+    <div class="w-card">
+      <span class="w-icon">🏆</span>
+      <div class="w-title">Langlebige Qualität</div>
+      <div class="w-text">Was Acklin baut, hält. Schweizer Qualität, solide Materialien und handwerkliche Sorgfalt — von Anfang an.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-wrap">
+    <span class="quote-mark">"</span>
+    <div class="quote-text">Acklin hat für uns die Stahltreppe und das Geländer gebaut. Saubere Ausführung, pünktliche Montage, kein Nachbessern nötig. Genau das, was man von einem soliden Betrieb erwartet.</div>
+    <div class="quote-author">— H. Müller, Bauherrschaft Zug</div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div class="kontakt-links">
+    <div class="eyebrow"><div class="line"></div><span style="color:var(--akzentHell)">Kontakt</span></div>
+    <h2>Projekt<br><em>anfragen.</em></h2>
+    <p>Rufen Sie an oder schreiben Sie uns — wir antworten persönlich und schnell. Kein Anliegen ist zu klein.</p>
+    <ul class="kontakt-list">
+      <li><div class="k-icon">📞</div> 041 761 82 15</li>
+      <li><div class="k-icon">✉️</div> info@acklin.ch</li>
+      <li><div class="k-icon">📍</div> Industriestrasse 59, 6300 Zug</li>
+    </ul>
+  </div>
+  <div class="kontakt-form">
+    <div class="form-title">Anfrage stellen</div>
+    <div class="form-row">
+      <div class="form-group"><label>Name</label><input type="text" placeholder="Ihr Name"></div>
+      <div class="form-group"><label>Firma</label><input type="text" placeholder="Optional"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Telefon</label><input type="text" placeholder="Ihre Nummer"></div>
+      <div class="form-group"><label>E-Mail</label><input type="email" placeholder="Ihre E-Mail"></div>
+    </div>
+    <div class="form-group">
+      <label>Produkt / Bereich</label>
+      <select>
+        <option value="" disabled selected>Bitte wählen...</option>
+        <option>Stahlbauten & Konstruktionen</option>
+        <option>Treppen</option>
+        <option>Geländer</option>
+        <option>Balkone</option>
+        <option>Türen & Brandschutztüren</option>
+        <option>Vordächer & Unterstände</option>
+        <option>Fronten & Fassaden</option>
+        <option>Tore & Fenster</option>
+        <option>Anderes</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Beschreibung</label><textarea placeholder="Kurze Beschreibung Ihres Projekts..."></textarea></div>
+    <button class="submit-btn">Anfrage senden →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2024 <span>Acklin Metall- und Stahlbau AG</span> · Industriestrasse 59 · 6300 Zug</div>
+  <div>Gegründet 1877 · Fünf Generationen · Zuger Handwerk</div>
+</footer>
+
+</body>
+</html>

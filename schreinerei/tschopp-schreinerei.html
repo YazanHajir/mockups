@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tschopp Schreinerei AG — Kradolf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dunkel:    #14200f;
+      --wald:      #243b1c;
+      --moos:      #3d6130;
+      --hell-moos: #5a8a4a;
+      --gold:      #b8922e;
+      --goldHell:  #d4ae58;
+      --creme:     #f6f3ee;
+      --hellCreme: #faf8f4;
+      --text:      #14200f;
+      --muted:     #5a6e52;
+      --weiss:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--hellCreme);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(20, 32, 15, 0.93);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 64px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(184,146,46,0.18);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 38px; height: 38px;
+      background: var(--gold);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--dunkel);
+    }
+
+    .logo-text {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.42);
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 40px; }
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--goldHell); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--dunkel) !important;
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--goldHell) !important; color: var(--dunkel) !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: var(--dunkel);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 160px 80px 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .hero-eyebrow .line { width: 40px; height: 1px; background: var(--gold); }
+    .hero-eyebrow span {
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .hero-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    .hero-left h1 em { font-style: italic; color: var(--goldHell); }
+
+    .hero-left p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions { display: flex; align-items: center; gap: 28px; }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--dunkel);
+      padding: 15px 34px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-gold:hover {
+      background: var(--goldHell);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(184,146,46,0.35);
+    }
+
+    .btn-ghost {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--goldHell); }
+    .btn-ghost::after { content: '→'; }
+
+    .hero-right {
+      position: relative;
+      background: linear-gradient(135deg, #1d3015 0%, #2e4f22 50%, var(--moos) 100%);
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-badge-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      padding: 60px;
+    }
+
+    .badge-year .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 9rem;
+      font-weight: 900;
+      line-height: 0.9;
+      color: rgba(255,255,255,0.05);
+      letter-spacing: -4px;
+    }
+
+    .badge-since {
+      background: rgba(184,146,46,0.12);
+      border: 1px solid rgba(184,146,46,0.35);
+      border-radius: 12px;
+      padding: 32px 40px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-since .big {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+    }
+
+    .badge-since .sub {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 10px;
+      display: block;
+    }
+
+    .badge-since .detail {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.32);
+      margin-top: 8px;
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--gold);
+      padding: 20px 64px;
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .trust-item { display: flex; align-items: center; gap: 10px; }
+
+    .trust-item .ti-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--dunkel);
+    }
+
+    .trust-item .ti-lbl {
+      font-size: 0.82rem;
+      color: rgba(20,32,15,0.65);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .trust-sep { width: 1px; height: 32px; background: rgba(20,32,15,0.2); }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 110px 80px; }
+    .section-bg { background: var(--creme); }
+    .section-dark { background: var(--wald); }
+
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .eyebrow .line { width: 32px; height: 1px; background: var(--gold); }
+    .eyebrow span { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+
+    h2.s-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--wald);
+      line-height: 1.1;
+    }
+
+    /* ─── LEISTUNGEN GRID ─── */
+    .leistungen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(36,59,28,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .l-card {
+      background: #fff;
+      padding: 44px 36px;
+      transition: background 0.25s;
+      cursor: default;
+    }
+
+    .l-card:hover { background: var(--wald); }
+    .l-card:hover .l-title, .l-card:hover .l-text { color: #fff; }
+    .l-card:hover .l-num { color: rgba(255,255,255,0.1); }
+
+    .l-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(36,59,28,0.07);
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color 0.25s;
+    }
+
+    .l-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--wald);
+      margin-bottom: 14px;
+      transition: color 0.25s;
+    }
+
+    .l-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      transition: color 0.25s;
+    }
+
+    /* ─── PHILOSOPHIE ─── */
+    .philosophie {
+      background: var(--wald);
+      padding: 110px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .philosophie h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    .philosophie h2 em { font-style: italic; color: var(--goldHell); }
+
+    .philosophie p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .werte-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .wert-item {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: start;
+    }
+
+    .wert-item:last-child { border-bottom: none; }
+
+    .wert-icon {
+      font-size: 1.6rem;
+      padding-top: 2px;
+    }
+
+    .wert-text h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .wert-text p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* ─── TESTIMONIAL ─── */
+    .testimonial-section {
+      background: var(--hellCreme);
+      padding: 110px 80px;
+      text-align: center;
+    }
+
+    .testimonial-wrap { max-width: 760px; margin: 0 auto; }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      line-height: 0.5;
+      color: var(--gold);
+      opacity: 0.4;
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--wald);
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+
+    .quote-author {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── KONTAKT ─── */
+    .kontakt {
+      background: var(--dunkel);
+      padding: 110px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .kontakt-links h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .kontakt-links h2 em { color: var(--goldHell); font-style: italic; }
+
+    .kontakt-links p {
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+
+    .kontakt-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+
+    .kontakt-list li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+    }
+
+    .k-icon {
+      width: 40px; height: 40px;
+      background: rgba(184,146,46,0.12);
+      border: 1px solid rgba(184,146,46,0.25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .kontakt-form {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 44px;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .form-group input, .form-group textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { height: 100px; resize: none; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--dunkel);
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover { background: var(--goldHell); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0a1407;
+      color: rgba(255,255,255,0.25);
+      padding: 28px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    footer span { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 28px; }
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 120px 32px 60px; }
+      .hero-left h1 { font-size: 3rem; }
+      .hero-right { min-height: 280px; }
+      .trust-bar { gap: 32px; flex-wrap: wrap; padding: 20px 28px; }
+      .section { padding: 72px 32px; }
+      .leistungen-grid { grid-template-columns: 1fr; }
+      .philosophie { grid-template-columns: 1fr; padding: 72px 32px; gap: 48px; }
+      .testimonial-section { padding: 72px 32px; }
+      .quote-text { font-size: 1.2rem; }
+      .kontakt { grid-template-columns: 1fr; padding: 72px 32px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">T</div>
+    <div class="logo-text">
+      Tschopp
+      <span>Schreinerei AG · Kradolf</span>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#philosophie">Über uns</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="nav-cta">Anfrage stellen</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="line"></div>
+      <span>Schreinerei · Kradolf · Thurgau</span>
+    </div>
+    <h1>Holz.<br>Präzision.<br><em>Tschopp.</em></h1>
+    <p>Tschopp Schreinerei AG — Ihr Schreinereibetrieb im Thurgau. Massanfertigungen, Innenausbau und Küchenbau mit echtem Handwerk und persönlicher Begleitung.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-gold">Projekt besprechen</a>
+      <a href="#leistungen" class="btn-ghost">Leistungen ansehen</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-badge-wrap">
+      <div class="badge-year">
+        <div class="num">Thurgau</div>
+      </div>
+      <div class="badge-since">
+        <span class="big">100%</span>
+        <span class="sub">Massarbeit aus der Region</span>
+        <div class="detail">Persönliche Beratung · Lokales Handwerk</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="ti-num">Kradolf</div>
+    <div class="ti-lbl">Standort<br>Thurgau</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">100%</div>
+    <div class="ti-lbl">Massarbeit<br>nach Wunsch</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">✓</div>
+    <div class="ti-lbl">Persönliche<br>Beratung</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">∞</div>
+    <div class="ti-lbl">Projekte —<br>kein Minimum</div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="section section-bg" id="leistungen">
+  <div class="section-header">
+    <div>
+      <div class="eyebrow"><div class="line"></div><span>Was wir machen</span></div>
+      <h2 class="s-title">Unsere Leistungen</h2>
+    </div>
+  </div>
+  <div class="leistungen-grid">
+    <div class="l-card">
+      <div class="l-num">01</div>
+      <div class="l-title">Möbel nach Mass</div>
+      <div class="l-text">Von der Idee bis zur Montage — wir fertigen Möbelstücke exakt nach Ihren Wünschen. Jedes Stück ein Unikat aus hochwertigem Holz.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">02</div>
+      <div class="l-title">Küchenbau</div>
+      <div class="l-text">Küchen, die zu Ihnen passen — massgenau geplant und handwerklich gebaut. Funktional, langlebig und ästhetisch überzeugend.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">03</div>
+      <div class="l-title">Innenausbau</div>
+      <div class="l-text">Einbauschränke, Trennwände, Raumgestaltung — wir bauen Innenräume, die funktionieren und gut aussehen.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">04</div>
+      <div class="l-title">Türen & Fenster</div>
+      <div class="l-text">Reparaturen, Umbauten, Neuanfertigungen — wir arbeiten sauber und termingerecht, auch für einzelne Stücke.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">05</div>
+      <div class="l-title">Reparaturen</div>
+      <div class="l-text">Kein Auftrag zu klein — Möbel, Türen, Schränke: wir reparieren schnell und sauber mit direktem Kundenkontakt.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">06</div>
+      <div class="l-title">Beratung</div>
+      <div class="l-text">Idee vorhanden, aber kein Konzept? Wir beraten Sie kostenlos und unverbindlich — direkt, ohne Umwege.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHIE -->
+<section class="philosophie" id="philosophie">
+  <div>
+    <div class="eyebrow"><div class="line"></div><span style="color:var(--goldHell)">Unser Ansatz</span></div>
+    <h2>Handwerk mit<br><em>Herz und Verstand.</em></h2>
+    <p>Als regionaler Betrieb kennen wir unsere Kunden persönlich. Kein anonymer Grossbetrieb — wir sind Ihr direkter Ansprechpartner vom ersten Gespräch bis zur Abnahme.</p>
+    <p>Qualität entsteht nicht durch Zufall. Sorgfältige Planung, gutes Material und echtes Handwerk — das ist unser Versprechen an Sie.</p>
+  </div>
+  <div class="werte-list">
+    <div class="wert-item">
+      <div class="wert-icon">🪵</div>
+      <div class="wert-text">
+        <h4>Echtes Holzhandwerk</h4>
+        <p>Wir arbeiten mit natürlichen Materialien und traditionellen Techniken — ergänzt durch moderne Präzision.</p>
+      </div>
+    </div>
+    <div class="wert-item">
+      <div class="wert-icon">🤝</div>
+      <div class="wert-text">
+        <h4>Direkter Kundenkontakt</h4>
+        <p>Sie sprechen immer mit jemandem, der Ihr Projekt kennt — kein Callcenter, keine Weiterleitungen.</p>
+      </div>
+    </div>
+    <div class="wert-item">
+      <div class="wert-icon">📐</div>
+      <div class="wert-text">
+        <h4>Massgenau & termingerecht</h4>
+        <p>Jedes Projekt wird präzise geplant und pünktlich geliefert. Das ist unser Standard, nicht die Ausnahme.</p>
+      </div>
+    </div>
+    <div class="wert-item">
+      <div class="wert-icon">📍</div>
+      <div class="wert-text">
+        <h4>Regional verwurzelt</h4>
+        <p>Wir sind ein Betrieb aus dem Thurgau — für die Menschen hier. Kurze Wege, lokale Verantwortung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-wrap">
+    <span class="quote-mark">"</span>
+    <div class="quote-text">Tschopp hat unsere Küche und den Einbauschrank exakt nach unseren Wünschen gebaut. Die Beratung war unkompliziert, die Ausführung sauber — und der Termin wurde eingehalten.</div>
+    <div class="quote-author">— Familie Studer, Kreuzlingen</div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div class="kontakt-links">
+    <div class="eyebrow"><div class="line"></div><span style="color:var(--goldHell)">Kontakt</span></div>
+    <h2>Projekt<br><em>besprechen.</em></h2>
+    <p>Rufen Sie uns an oder nutzen Sie das Formular — wir antworten persönlich und ohne Wartezeit.</p>
+    <ul class="kontakt-list">
+      <li><div class="k-icon">📞</div> 071 642 20 54</li>
+      <li><div class="k-icon">📍</div> Heldswilerstr. 9, 9214 Kradolf</li>
+    </ul>
+  </div>
+  <div class="kontakt-form">
+    <div class="form-title">Nachricht schreiben</div>
+    <div class="form-row">
+      <div class="form-group"><label>Name</label><input type="text" placeholder="Ihr Name"></div>
+      <div class="form-group"><label>Telefon</label><input type="text" placeholder="Ihre Nummer"></div>
+    </div>
+    <div class="form-group"><label>Projekt</label><input type="text" placeholder="Was darf es sein?"></div>
+    <div class="form-group"><label>Nachricht</label><textarea placeholder="Kurze Beschreibung Ihres Projekts..."></textarea></div>
+    <button class="submit-btn">Nachricht senden →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2024 <span>Tschopp Schreinerei AG</span> · Kradolf · Thurgau</div>
+  <div>Massarbeit · Persönliche Beratung · Regionaler Betrieb</div>
+</footer>
+
+</body>
+</html>

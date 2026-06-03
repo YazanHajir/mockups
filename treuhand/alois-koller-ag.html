@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alois Koller AG — Heizung · Sanitär · Planung · Bremgarten</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dunkel:     #0d1520;
+      --marine:     #152238;
+      --blau:       #1e5fa8;
+      --blauHell:   #2b78d0;
+      --warmweiss:  #f6f8fc;
+      --hellCreme:  #f0f4f9;
+      --creme:      #e4ecf5;
+      --text:       #0d1520;
+      --muted:      #4a6080;
+      --weiss:      #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--hellCreme);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13, 21, 32, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 64px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(30, 95, 168, 0.25);
+    }
+
+    .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+
+    .logo-mark {
+      width: 42px; height: 42px;
+      background: var(--blau);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 0.67rem;
+      color: rgba(255,255,255,0.35);
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 36px; }
+    nav a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--blauHell); }
+
+    .nav-cta {
+      background: var(--blau) !important;
+      color: #fff !important;
+      padding: 9px 22px !important;
+      border-radius: 4px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--blauHell) !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: var(--dunkel);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Hintergrunddekoration */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,95,168,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-left {
+      padding: 160px 80px 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .hero-eyebrow .line { width: 40px; height: 1px; background: var(--blau); }
+    .hero-eyebrow span {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blauHell);
+      font-weight: 500;
+    }
+
+    .hero-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.2rem;
+      font-weight: 900;
+      line-height: 1.07;
+      color: #fff;
+      margin-bottom: 26px;
+    }
+
+    .hero-left h1 em {
+      font-style: italic;
+      color: var(--blauHell);
+    }
+
+    .hero-left p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.8;
+      max-width: 420px;
+      margin-bottom: 50px;
+    }
+
+    .hero-actions { display: flex; align-items: center; gap: 28px; }
+
+    .btn-blau {
+      background: var(--blau);
+      color: #fff;
+      padding: 15px 36px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+    }
+
+    .btn-blau:hover {
+      background: var(--blauHell);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(30,95,168,0.45);
+    }
+
+    .btn-ghost {
+      color: rgba(255,255,255,0.42);
+      font-size: 0.88rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--blauHell); }
+    .btn-ghost::after { content: '→'; }
+
+    /* Hero rechts */
+    .hero-right {
+      position: relative;
+      background: linear-gradient(145deg, #0a1825 0%, #111f30 50%, #162840 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 60px;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,95,168,0.1) 0%, transparent 70%);
+    }
+
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 360px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Familien-Karte */
+    .familie-karte {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(30,95,168,0.3);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 6px;
+    }
+
+    .familie-karte-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .familie-icon {
+      width: 36px; height: 36px;
+      background: rgba(30,95,168,0.25);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .familie-karte-header div {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .familie-namen {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .familie-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .name-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--blau);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .name-info strong {
+      display: block;
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .name-info span {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.38);
+    }
+
+    .merkmal {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(30,95,168,0.18);
+      border-left: 3px solid var(--blau);
+      border-radius: 6px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .merkmal-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .merkmal-text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.45;
+    }
+
+    .merkmal-text strong {
+      display: block;
+      color: #fff;
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--blau);
+      padding: 22px 64px;
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .trust-item { display: flex; align-items: center; gap: 12px; }
+
+    .trust-item .ti-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .trust-item .ti-lbl {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .trust-sep { width: 1px; height: 32px; background: rgba(255,255,255,0.22); }
+
+    /* ─── ABSCHNITTE ─── */
+    .section { padding: 110px 80px; }
+    .section-bg { background: var(--creme); }
+
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .eyebrow .line { width: 32px; height: 1px; background: var(--blau); }
+    .eyebrow span {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blau);
+      font-weight: 500;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--dunkel);
+      max-width: 520px;
+    }
+
+    .section-header h2 em { font-style: italic; color: var(--blau); }
+
+    .section-header p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 300px;
+      text-align: right;
+    }
+
+    /* ─── ÜBER / GESCHICHTE ─── */
+    .geschichte-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .geschichte-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.22;
+      color: var(--dunkel);
+      margin-bottom: 26px;
+    }
+
+    .geschichte-text h3 em { font-style: italic; color: var(--blau); }
+
+    .geschichte-text p {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .geschichte-text p:last-of-type { margin-bottom: 42px; }
+
+    .stats-row {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 42px;
+      padding: 28px 0;
+      border-top: 1px solid var(--creme);
+      border-bottom: 1px solid var(--creme);
+    }
+
+    .stat-item {}
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--blau);
+      display: block;
+    }
+
+    .stat-lbl {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    /* Timeline / Söhne-Karte */
+    .soehne-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 20px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blau), rgba(30,95,168,0.15));
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 28px 24px 0;
+      border-bottom: 1px solid var(--creme);
+      position: relative;
+    }
+
+    .timeline-item:last-child { border-bottom: none; }
+
+    .timeline-dot {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--blau);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 0 4px var(--hellCreme);
+    }
+
+    .timeline-content {}
+
+    .timeline-year {
+      font-size: 0.72rem;
+      color: var(--blau);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--dunkel);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content span {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─── LEISTUNGEN ─── */
+    .leistungen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .leistung-card {
+      background: var(--warmweiss);
+      border: 1px solid rgba(30,95,168,0.1);
+      border-radius: 8px;
+      padding: 38px 30px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .leistung-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--blau);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s;
+    }
+
+    .leistung-card:hover {
+      border-color: rgba(30,95,168,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(30,95,168,0.1);
+    }
+
+    .leistung-card:hover::before { transform: scaleX(1); }
+
+    .leistung-icon {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .leistung-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 12px;
+    }
+
+    .leistung-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .leistung-liste {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .leistung-liste li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .leistung-liste li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--blau);
+      flex-shrink: 0;
+    }
+
+    /* ─── AKTUELLES / ENERGIE ─── */
+    .aktuell-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .aktuell-karte {
+      background: var(--warmweiss);
+      border: 1px solid rgba(30,95,168,0.12);
+      border-radius: 8px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .aktuell-karte::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle, rgba(30,95,168,0.08), transparent 70%);
+    }
+
+    .aktuell-badge {
+      display: inline-block;
+      background: rgba(30,95,168,0.1);
+      border: 1px solid rgba(30,95,168,0.25);
+      color: var(--blau);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+
+    .aktuell-karte h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dunkel);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .aktuell-karte p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─── REFERENZEN ─── */
+    .referenzen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .referenz-item {
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, var(--marine) 0%, #1a3050 100%);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .referenz-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16 / 9;
+    }
+
+    .ref-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,21,32,0.8) 0%, transparent 55%);
+    }
+
+    .ref-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      opacity: 0.1;
+    }
+
+    .ref-label {
+      position: relative;
+      z-index: 2;
+      padding: 20px 22px;
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .ref-label span {
+      display: block;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 2px;
+    }
+
+    /* ─── CTA / KONTAKT ─── */
+    .cta-section {
+      background: var(--dunkel);
+      padding: 110px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .cta-left h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.12;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+
+    .cta-left h2 em { font-style: italic; color: var(--blauHell); }
+
+    .cta-left p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.78;
+      margin-bottom: 44px;
+    }
+
+    .cta-kontakt { display: flex; flex-direction: column; gap: 16px; }
+
+    .cta-zeile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.72);
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .cta-zeile:hover { color: var(--blauHell); }
+
+    .cta-zeile-icon {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      background: rgba(30,95,168,0.2);
+      border: 1px solid rgba(30,95,168,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .cta-right {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(30,95,168,0.2);
+      border-radius: 10px;
+      padding: 48px 44px;
+    }
+
+    .cta-right h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 32px;
+    }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(30,95,168,0.25);
+      border-radius: 5px;
+      padding: 13px 16px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group select option { background: var(--marine); color: #fff; }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--blau); }
+
+    .form-group textarea { height: 96px; resize: none; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .btn-blau-full {
+      width: 100%;
+      background: var(--blau);
+      color: #fff;
+      padding: 15px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
+      transition: background 0.2s;
+    }
+
+    .btn-blau-full:hover { background: var(--blauHell); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #060d14;
+      padding: 40px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(30,95,168,0.15);
+    }
+
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+    .footer-logo-mark {
+      width: 34px; height: 34px;
+      background: var(--blau);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .footer-logo-text {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    footer p {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.22);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      nav ul { display: none; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 120px 28px 60px; }
+      .hero-left h1 { font-size: 2.8rem; }
+      .hero-right { display: none; }
+
+      .trust-bar { flex-wrap: wrap; gap: 24px; padding: 20px 28px; }
+      .trust-sep { display: none; }
+
+      .section { padding: 70px 28px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .section-header p { text-align: left; }
+      .section-header h2 { font-size: 2rem; }
+
+      .geschichte-grid { grid-template-columns: 1fr; gap: 48px; }
+      .leistungen-grid { grid-template-columns: 1fr; }
+      .aktuell-grid { grid-template-columns: 1fr; }
+      .referenzen-grid { grid-template-columns: 1fr; }
+      .referenz-item:first-child { grid-column: span 1; aspect-ratio: 4/3; }
+
+      .cta-section { grid-template-columns: 1fr; padding: 70px 28px; gap: 48px; }
+      .cta-left h2 { font-size: 2.2rem; }
+      .form-row { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; gap: 16px; padding: 32px 28px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">AK</div>
+    <div class="logo-text">
+      Alois Koller AG
+      <span>Heizung · Sanitär · Planung</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#geschichte">Über uns</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+    <li><a href="#aktuell">Aktuelles</a></li>
+    <li><a href="#kontakt" class="nav-cta">Anfrage stellen</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="line"></div>
+      <span>Haustechnik in Bremgarten seit 1958</span>
+    </div>
+    <h1>Wärme,<br>die man<br><em>spürt.</em></h1>
+    <p>
+      Heizung, Sanitär und Planung aus einer Hand —
+      seit über 65 Jahren steht die Familie Koller in Bremgarten
+      für Verlässlichkeit, Handwerk und persönlichen Service.
+    </p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-blau">Anfrage stellen</a>
+      <a href="#leistungen" class="btn-ghost">Unsere Leistungen</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <!-- Familien-Karte -->
+      <div class="familie-karte">
+        <div class="familie-karte-header">
+          <div class="familie-icon">🏠</div>
+          <div>Inhabergeführt · 2. Generation</div>
+        </div>
+        <div class="familie-namen">
+          <div class="familie-name">
+            <div class="name-avatar">RK</div>
+            <div class="name-info">
+              <strong>Roman Koller</strong>
+              <span>Mitinhaber · Geschäftsleitung</span>
+            </div>
+          </div>
+          <div class="familie-name">
+            <div class="name-avatar">MK</div>
+            <div class="name-info">
+              <strong>Markus Koller</strong>
+              <span>Mitinhaber · Technik</span>
+            </div>
+          </div>
+          <div class="familie-name">
+            <div class="name-avatar">DK</div>
+            <div class="name-info">
+              <strong>Daniel Koller</strong>
+              <span>Mitinhaber · Planung</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="merkmal">
+        <div class="merkmal-icon">🔥</div>
+        <div class="merkmal-text">
+          <strong>Alle Heizsysteme</strong>
+          Wärmepumpe, Öl, Gas, Solar — wir planen und installieren.
+        </div>
+      </div>
+
+      <div class="merkmal">
+        <div class="merkmal-icon">💧</div>
+        <div class="merkmal-text">
+          <strong>Sanitär & Rohrleitungen</strong>
+          Neu- und Umbau, Sanierung, Service aus einer Hand.
+        </div>
+      </div>
+
+      <div class="merkmal">
+        <div class="merkmal-icon">📐</div>
+        <div class="merkmal-text">
+          <strong>CAD-Planung</strong>
+          Moderne Planung für Neubau und Renovation.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TRUST BAR ─── -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="ti-num">1958</div>
+    <div class="ti-lbl">Gründungs-<br>jahr</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">65+</div>
+    <div class="ti-lbl">Jahre<br>Erfahrung</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">20+</div>
+    <div class="ti-lbl">Fachkräfte<br>im Team</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">3</div>
+    <div class="ti-lbl">Söhne &<br>Inhaber</div>
+  </div>
+</div>
+
+<!-- ─── GESCHICHTE ─── -->
+<section class="section" id="geschichte">
+  <div class="geschichte-grid">
+    <div class="geschichte-text">
+      <div class="eyebrow">
+        <div class="line"></div>
+        <span>Unsere Geschichte</span>
+      </div>
+      <h3>Ein Betrieb,<br>eine <em>Familie.</em></h3>
+      <p>
+        1958 gründete Alois Koller in Bremgarten seinen Sanitär- und Heizbetrieb —
+        mit dem Anspruch, handwerkliche Qualität und persönliche Zuverlässigkeit
+        in jeden Auftrag zu legen.
+      </p>
+      <p>
+        1991 übernahmen seine drei Söhne Roman, Markus und Daniel den Betrieb.
+        Heute beschäftigt die Alois Koller AG über 20 Fachkräfte und ist
+        eine der verlässlichsten Adressen für Haustechnik in der Region Bremgarten.
+      </p>
+      <p>
+        Was sich verändert hat: die Technologie. Was gleich geblieben ist:
+        der persönliche Kontakt, die Sorgfalt und das Handwerk.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num">65+</span>
+          <div class="stat-lbl">Jahre in<br>Bremgarten</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3</span>
+          <div class="stat-lbl">Inhaber aus<br>einer Familie</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">20+</span>
+          <div class="stat-lbl">Mitarbeitende<br>im Team</div>
+        </div>
+      </div>
+
+      <a href="#kontakt" class="btn-blau">Projekt besprechen</a>
+    </div>
+
+    <!-- Timeline -->
+    <div class="soehne-visual">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">🔧</div>
+        <div class="timeline-content">
+          <div class="timeline-year">1958</div>
+          <strong>Gründung durch Alois Koller</strong>
+          <span>Start als Sanitär- und Installationsbetrieb in Bremgarten — mit Handwerk und Haltung.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">👨‍👦</div>
+        <div class="timeline-content">
+          <div class="timeline-year">1991</div>
+          <strong>Übergabe an die drei Söhne</strong>
+          <span>Roman, Markus und Daniel Koller übernehmen — der Betrieb wächst und erweitert sein Angebot.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">♨️</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2000er</div>
+          <strong>Spezialisierung Wärmepumpen</strong>
+          <span>Frühzeitig auf erneuerbare Heizsysteme gesetzt — heute einer der Spezialisten im Aargau.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">⚡</div>
+        <div class="timeline-content">
+          <div class="timeline-year">Heute</div>
+          <strong>Vollumfängliche Haustechnik</strong>
+          <span>Heizung, Sanitär, Planung — 20+ Fachkräfte, moderner Maschinenpark, persönlicher Service.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LEISTUNGEN ─── -->
+<section class="section section-bg" id="leistungen">
+  <div class="section-header">
+    <div>
+      <div class="eyebrow">
+        <div class="line"></div>
+        <span>Leistungen</span>
+      </div>
+      <h2>Was wir für<br>Sie <em>leisten.</em></h2>
+    </div>
+    <p>Alles aus einer Hand — von der Planung bis zur Inbetriebnahme und dem Service danach.</p>
+  </div>
+
+  <div class="leistungen-grid">
+    <div class="leistung-card">
+      <span class="leistung-icon">🔥</span>
+      <h4>Heizung</h4>
+      <p>Wir planen, installieren und warten alle modernen Heizsysteme — zugeschnitten auf Ihr Gebäude und Ihren Bedarf.</p>
+      <ul class="leistung-liste">
+        <li>Wärmepumpen</li>
+        <li>Öl- und Gasheizungen</li>
+        <li>Solarenergie</li>
+        <li>Fernwärme</li>
+        <li>Heizungsersatz</li>
+      </ul>
+    </div>
+
+    <div class="leistung-card">
+      <span class="leistung-icon">💧</span>
+      <h4>Sanitär</h4>
+      <p>Sanitärinstallationen für Neubau, Umbau und Sanierung — sauber geplant und fachgerecht ausgeführt.</p>
+      <ul class="leistung-liste">
+        <li>Badsanierungen</li>
+        <li>Rohrleitungsbau</li>
+        <li>Neubauinstallationen</li>
+        <li>Wasseraufbereitung</li>
+        <li>Wartung & Service</li>
+      </ul>
+    </div>
+
+    <div class="leistung-card">
+      <span class="leistung-icon">📐</span>
+      <h4>Planung</h4>
+      <p>Mit modernen CAD-Programmen entwickeln wir massgeschneiderte Haustechnikkonzepte für Ihr Bauprojekt.</p>
+      <ul class="leistung-liste">
+        <li>CAD-gestützte Planung</li>
+        <li>Energieberatung</li>
+        <li>Förderberatung</li>
+        <li>Bestandsaufnahme</li>
+        <li>Kostenplanung</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── AKTUELLES ─── -->
+<section class="section" id="aktuell">
+  <div class="section-header">
+    <div>
+      <div class="eyebrow">
+        <div class="line"></div>
+        <span>Aktuelles</span>
+      </div>
+      <h2>Was Sie jetzt<br><em>wissen sollten.</em></h2>
+    </div>
+    <p>Neue Vorschriften und Fördermöglichkeiten — wir halten Sie auf dem Laufenden.</p>
+  </div>
+
+  <div class="aktuell-grid">
+    <div class="aktuell-karte">
+      <div class="aktuell-badge">Energiegesetz Aargau</div>
+      <h4>Neues Energiegesetz ab April 2025</h4>
+      <p>
+        Der Kanton Aargau hat das revidierte Energiegesetz in Kraft gesetzt.
+        Wer seine fossile Heizung erneuert, muss künftig auf erneuerbare Energien umsteigen.
+        Wir beraten Sie, welche Lösung für Ihr Gebäude passt — und was gefördert wird.
+      </p>
+    </div>
+
+    <div class="aktuell-karte">
+      <div class="aktuell-badge">Fördergelder</div>
+      <h4>Förderbeiträge für Wärmepumpen nutzen</h4>
+      <p>
+        Beim Ersatz von Öl- oder Gasheizungen durch zertifizierte Wärmepumpenanlagen
+        gibt es attraktive Bundesförderungen. Wir sind zertifizierter Wärmepumpeninstallateur
+        und unterstützen Sie bei der Antragsstellung.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── REFERENZEN ─── -->
+<section class="section section-bg" id="referenzen">
+  <div class="section-header">
+    <div>
+      <div class="eyebrow">
+        <div class="line"></div>
+        <span>Referenzen</span>
+      </div>
+      <h2>Projekte, die<br>für sich <em>sprechen.</em></h2>
+    </div>
+    <p>Auswahl abgeschlossener Projekte aus der Region Bremgarten und Freiamt.</p>
+  </div>
+
+  <div class="referenzen-grid">
+    <div class="referenz-item">
+      <div class="ref-ph">🔥</div>
+      <div class="ref-overlay"></div>
+      <div class="ref-label">
+        Wärmepumpenanlage Mehrfamilienhaus
+        <span>Bremgarten, Aargau</span>
+      </div>
+    </div>
+    <div class="referenz-item">
+      <div class="ref-ph">💧</div>
+      <div class="ref-overlay"></div>
+      <div class="ref-label">
+        Badsanierung Einfamilienhaus
+        <span>Wohlen, Aargau</span>
+      </div>
+    </div>
+    <div class="referenz-item">
+      <div class="ref-ph">📐</div>
+      <div class="ref-overlay"></div>
+      <div class="ref-label">
+        Sanitärinstallation Neubau
+        <span>Hägglingen, Aargau</span>
+      </div>
+    </div>
+    <div class="referenz-item">
+      <div class="ref-ph">♨️</div>
+      <div class="ref-overlay"></div>
+      <div class="ref-label">
+        Heizungsersatz Gewerbegebäude
+        <span>Freiamt, Aargau</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA / KONTAKT ─── -->
+<section class="cta-section" id="kontakt">
+  <div class="cta-left">
+    <div class="eyebrow" style="margin-bottom: 20px;">
+      <div class="line" style="background: var(--blauHell);"></div>
+      <span style="color: var(--blauHell);">Kontakt</span>
+    </div>
+    <h2>Bereit für<br>Ihr nächstes<br><em>Projekt?</em></h2>
+    <p>
+      Rufen Sie uns an oder schreiben Sie uns.
+      Wir melden uns schnell und persönlich — nicht mit einem Callcenter.
+    </p>
+    <div class="cta-kontakt">
+      <a href="tel:+41564487070" class="cta-zeile">
+        <div class="cta-zeile-icon">📞</div>
+        056 648 70 70
+      </a>
+      <a href="mailto:info@aloiskollerag.ch" class="cta-zeile">
+        <div class="cta-zeile-icon">✉️</div>
+        info@aloiskollerag.ch
+      </a>
+      <a href="#" class="cta-zeile">
+        <div class="cta-zeile-icon">📍</div>
+        Wohlerstrasse 43a, 5620 Bremgarten
+      </a>
+    </div>
+  </div>
+
+  <div class="cta-right">
+    <h3>Projekt anfragen</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Vorname</label>
+        <input type="text" placeholder="Max" />
+      </div>
+      <div class="form-group">
+        <label>Nachname</label>
+        <input type="text" placeholder="Muster" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Bereich</label>
+      <select>
+        <option value="" disabled selected>Bitte wählen…</option>
+        <option>Heizung — Neuinstallation</option>
+        <option>Heizung — Ersatz / Sanierung</option>
+        <option>Sanitär — Neubau</option>
+        <option>Sanitär — Sanierung / Bad</option>
+        <option>Planung / Beratung</option>
+        <option>Service / Wartung</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>E-Mail</label>
+      <input type="email" placeholder="max@muster.ch" />
+    </div>
+    <div class="form-group">
+      <label>Ihr Projekt</label>
+      <textarea placeholder="Kurze Beschreibung des Projekts…"></textarea>
+    </div>
+    <button class="btn-blau-full">Unverbindlich anfragen</button>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <a href="#" class="footer-logo">
+    <div class="footer-logo-mark">AK</div>
+    <div class="footer-logo-text">Alois Koller AG · Bremgarten</div>
+  </a>
+  <p>© 2026 Alois Koller AG · Wohlerstrasse 43a, 5620 Bremgarten · 056 648 70 70</p>
+</footer>
+
+</body>
+</html>

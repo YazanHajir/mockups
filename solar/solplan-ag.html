@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>solplan ag — Photovoltaik aus einer Hand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #0d1b2a;
+      --navy:    #1b2e45;
+      --mid:     #243a52;
+      --accent:  #f0a500;
+      --light:   #f4f6f9;
+      --white:   #ffffff;
+      --text:    #2c3e50;
+      --muted:   #6b7a8d;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13, 27, 42, 0.96);
+      backdrop-filter: blur(8px);
+      padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      font-size: 1.4rem; font-weight: 700; color: var(--white); letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: var(--dark);
+      padding: 10px 22px; border-radius: 6px;
+      font-size: 0.88rem; font-weight: 700; text-decoration: none;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .88; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom, rgba(13,27,42,0.82) 0%, rgba(13,27,42,0.55) 60%, rgba(13,27,42,0.72) 100%),
+        url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding: 120px 48px 80px;
+    }
+    .hero-inner { max-width: 680px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(240,165,0,0.18); border: 1px solid rgba(240,165,0,0.4);
+      color: var(--accent); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 4px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800; color: var(--white);
+      line-height: 1.12; margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero p {
+      font-size: 1.1rem; color: rgba(255,255,255,0.78);
+      line-height: 1.7; margin-bottom: 36px; max-width: 540px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: var(--dark);
+      padding: 15px 30px; border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(240,165,0,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(240,165,0,0.45); }
+    .btn-secondary {
+      border: 2px solid rgba(255,255,255,0.4); color: var(--white);
+      padding: 14px 28px; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── TRUST STRIP ─── */
+    .trust-strip {
+      background: var(--dark);
+      padding: 28px 48px;
+      display: flex; align-items: center; justify-content: center; gap: 48px;
+      flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.7); font-size: 0.88rem; }
+    .trust-item strong { color: var(--white); font-size: 1.4rem; font-weight: 800; }
+    .trust-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.12); }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 96px 48px; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+    }
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800; color: var(--dark); letter-spacing: -0.5px;
+      line-height: 1.2; margin-bottom: 20px;
+    }
+    .lead-text {
+      font-size: 1.08rem; color: var(--muted); line-height: 1.7;
+      max-width: 580px; margin-bottom: 48px;
+    }
+    .section-grid { display: grid; gap: 40px; }
+    .section-grid.two { grid-template-columns: 1fr 1fr; align-items: center; }
+    .section-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .section-grid.four { grid-template-columns: repeat(4, 1fr); }
+
+    /* ─── LEISTUNGEN ─── */
+    .leistungen { background: var(--light); }
+    .service-card {
+      background: var(--white); border-radius: 12px;
+      padding: 32px 28px; border: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .service-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+    .service-icon {
+      width: 52px; height: 52px; background: rgba(240,165,0,0.12);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; font-size: 1.6rem;
+    }
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+    .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── PROZESS ─── */
+    .prozess-step {
+      display: flex; gap: 24px; padding: 28px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .prozess-step:last-child { border-bottom: none; }
+    .step-num {
+      width: 44px; height: 44px; min-width: 44px;
+      background: var(--dark); color: var(--accent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem;
+    }
+    .step-content h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .step-content p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── REFERENZEN / PROJEKTE ─── */
+    .projekte { background: var(--dark); }
+    .projekte h2, .projekte .section-label { color: var(--white); }
+    .projekte .lead-text { color: rgba(255,255,255,0.6); }
+    .projekt-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .projekt-card {
+      border-radius: 12px; overflow: hidden; position: relative;
+      aspect-ratio: 4/3;
+      background: var(--navy);
+    }
+    .projekt-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s;
+    }
+    .projekt-card:hover img { transform: scale(1.05); }
+    .projekt-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,27,42,0.85) 0%, transparent 60%);
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .projekt-info { color: var(--white); }
+    .projekt-info h4 { font-size: 0.95rem; font-weight: 700; }
+    .projekt-info p { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin-top: 3px; }
+    .projekt-tag {
+      display: inline-block; background: var(--accent); color: var(--dark);
+      font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 3px;
+      margin-bottom: 8px;
+    }
+
+    /* ─── USP / WARUM WIR ─── */
+    .usp-block {
+      background: var(--navy); color: var(--white);
+      border-radius: 16px; padding: 40px;
+    }
+    .usp-block h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; }
+    .usp-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .usp-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.93rem; color: rgba(255,255,255,0.82); line-height: 1.5;
+    }
+    .usp-list li::before {
+      content: '✓';
+      color: var(--accent); font-weight: 700; font-size: 1rem;
+      min-width: 18px; margin-top: 1px;
+    }
+
+    /* ─── PARTNER ─── */
+    .partner { background: var(--light); }
+    .partner-logos {
+      display: flex; flex-wrap: wrap; gap: 20px 32px;
+      align-items: center; justify-content: center; margin-top: 40px;
+    }
+    .partner-logo {
+      background: var(--white); border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 8px; padding: 14px 24px;
+      font-size: 0.85rem; font-weight: 600; color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, #d4900a 100%);
+      text-align: center; padding: 80px 48px;
+    }
+    .cta-section h2 { color: var(--dark); font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 16px; }
+    .cta-section p { color: rgba(13,27,42,0.75); font-size: 1.05rem; margin-bottom: 36px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-dark {
+      background: var(--dark); color: var(--white);
+      padding: 16px 32px; border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-dark:hover { background: var(--navy); }
+    .btn-outline-dark {
+      border: 2px solid var(--dark); color: var(--dark);
+      padding: 15px 30px; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .btn-outline-dark:hover { background: var(--dark); color: var(--white); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.55);
+      padding: 48px; display: flex;
+      align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+    }
+    footer .logo { font-size: 1.2rem; }
+    .footer-info { font-size: 0.85rem; line-height: 1.8; }
+    .footer-info a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      nav .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      section { padding: 64px 24px; }
+      .section-grid.two,
+      .section-grid.three,
+      .section-grid.four,
+      .projekt-grid { grid-template-columns: 1fr; }
+      .trust-strip { padding: 24px; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">sol<span>plan</span> ag</div>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#prozess">Ablauf</a></li>
+    <li><a href="#projekte">Referenzen</a></li>
+    <li><a href="#partner">Partner</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Offerte anfragen</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Zertifizierter Fachbetrieb · Kanton St. Gallen</div>
+    <h1>Ihre Solaranlage —<br><em>professionell geplant,</em><br>sauber installiert.</h1>
+    <p>
+      Von der ersten Beratung bis zur Inbetriebnahme: solplan ag übernimmt alles aus einer Hand.
+      Zertifizierte Fachkräfte, klarer Prozess, keine Überraschungen.
+    </p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-primary">Kostenlose Offerte anfragen</a>
+      <a href="#prozess" class="btn-secondary">Wie läuft es ab?</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <strong>100%</strong>
+    <span>Ausführung durch<br>Fachkräfte mit EFZ</span>
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <strong>1</strong>
+    <span>Ansprechpartner<br>von Anfang bis Ende</span>
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <strong>Mels</strong>
+    <span>Lokal verankert<br>in der Region Sarganserland</span>
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <strong>IBC</strong>
+    <span>Solar & weitere<br>zertifizierte Partner</span>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="leistungen" id="leistungen">
+  <div class="section-label">Was wir machen</div>
+  <h2>Alles aus einer Hand —<br>vom ersten Gespräch bis zur Wartung</h2>
+  <p class="lead-text">
+    Sie müssen sich um nichts kümmern. Wir planen, beantragen, montieren und nehmen Ihre Anlage in Betrieb.
+    Danach bleiben wir Ihr direkter Ansprechpartner.
+  </p>
+  <div class="section-grid three">
+    <div class="service-card">
+      <div class="service-icon">📐</div>
+      <h3>Planung & Beratung</h3>
+      <p>Individuelle Analyse Ihrer Dachfläche, Ausrichtung und Verbrauch. Wir zeigen Ihnen, was sich wirklich rechnet.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Bewilligungsverfahren</h3>
+      <p>Wir übernehmen alle Anmeldungen — bei der Gemeinde, dem Netzbetreiber und der Pronovo AG für Förderbeiträge.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Montage & Installation</h3>
+      <p>Dachdecker EFZ und Elektroinstallateur EFZ arbeiten Hand in Hand. Sauber, termingerecht, ohne Überraschungen.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Inbetriebnahme</h3>
+      <p>Wir schalten die Anlage in Betrieb, überprüfen alle Werte und erklären Ihnen das Monitoring-System.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔋</div>
+      <h3>Batteriespeicher</h3>
+      <p>Eigenen Strom speichern und nachts nutzen. Wir integrieren Speicherlösungen von führenden Herstellern.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛠️</div>
+      <h3>Service & Wartung</h3>
+      <p>Regelmässige Kontrolle und schneller Support. Ihre Anlage arbeitet zuverlässig — wir stellen sicher, dass das so bleibt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROZESS + USP -->
+<section id="prozess">
+  <div class="section-grid two">
+    <div>
+      <div class="section-label">Der Ablauf</div>
+      <h2>Klar und transparent —<br>von Anfang an</h2>
+      <p class="lead-text">
+        Bei solplan ag wissen Sie jederzeit, was als nächstes passiert.
+        Kein Hin-und-Her mit verschiedenen Handwerkern. Ein Ansprechpartner. Ein Prozess.
+      </p>
+      <div>
+        <div class="prozess-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Erstgespräch & Analyse</h3>
+            <p>Wir schauen uns Ihr Dach an, besprechen Ihren Verbrauch und zeigen Ihnen, was möglich ist.</p>
+          </div>
+        </div>
+        <div class="prozess-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Offerte & Planung</h3>
+            <p>Sie erhalten eine detaillierte Offerte — transparent, nachvollziehbar, ohne versteckte Kosten.</p>
+          </div>
+        </div>
+        <div class="prozess-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Bewilligungen & Förderung</h3>
+            <p>Wir kümmern uns um alle Anmeldungen — auch bei Pronovo AG für Ihre Rückerstattung.</p>
+          </div>
+        </div>
+        <div class="prozess-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Montage durch Fachkräfte</h3>
+            <p>Dachdecker EFZ und Elektriker EFZ installieren sauber und termingerecht.</p>
+          </div>
+        </div>
+        <div class="prozess-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h3>Inbetriebnahme & Übergabe</h3>
+            <p>Wir schalten alles in Betrieb, zeigen Ihnen das Monitoring und bleiben Ihr Ansprechpartner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="usp-block">
+        <h3>Warum solplan ag?</h3>
+        <ul class="usp-list">
+          <li>Alle Arbeiten durch gelernte Fachkräfte mit EFZ — kein Outsourcing</li>
+          <li>Ein einziger Ansprechpartner — von der Planung bis zur Wartung</li>
+          <li>Lokaler Betrieb mit tiefer Kenntnis der Region Sarganserland</li>
+          <li>Partnerschaft mit führenden Herstellern (IBC Solar, Stiebel Eltron u.a.)</li>
+          <li>Wir melden Ihre Anlage bei Pronovo AG an — Sie erhalten den vollen Förderbetrag</li>
+          <li>Transparente Offerten — keine versteckten Kosten</li>
+          <li>Langfristige Verfügbarkeit für Service und Wartung</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENZPROJEKTE -->
+<section class="projekte" id="projekte">
+  <div class="section-label">Unsere Projekte</div>
+  <h2>Realisierte Anlagen<br>in der Region</h2>
+  <p class="lead-text">
+    Jede Anlage ist individuell. Diese Projekte zeigen die Bandbreite unserer Arbeit —
+    von Einfamilienhäusern bis zu Gewerbedächern.
+  </p>
+  <div class="projekt-grid">
+    <div class="projekt-card">
+      <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80" alt="Solaranlage Einfamilienhaus">
+      <div class="projekt-overlay">
+        <div class="projekt-info">
+          <div class="projekt-tag">Mels · 14 kWp</div>
+          <h4>Einfamilienhaus</h4>
+          <p>Steildach · IBC Solar · Batteriespeicher</p>
+        </div>
+      </div>
+    </div>
+    <div class="projekt-card">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Solaranlage Gewerbe">
+      <div class="projekt-overlay">
+        <div class="projekt-info">
+          <div class="projekt-tag">Sargans · 48 kWp</div>
+          <h4>Gewerbedach</h4>
+          <p>Flachdach · Ost-West-Belegung</p>
+        </div>
+      </div>
+    </div>
+    <div class="projekt-card">
+      <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="Solaranlage Landwirtschaft">
+      <div class="projekt-overlay">
+        <div class="projekt-info">
+          <div class="projekt-tag">Bad Ragaz · 22 kWp</div>
+          <h4>Landwirtschaftsbetrieb</h4>
+          <p>Schrägdach · Optimierter Eigenverbrauch</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER -->
+<section class="partner" id="partner">
+  <div style="text-align: center;">
+    <div class="section-label">Unsere Partner</div>
+    <h2>Zertifizierte Produkte<br>führender Hersteller</h2>
+    <p class="lead-text" style="margin: 0 auto 0 auto;">
+      Wir setzen ausschliesslich auf geprüfte Qualität. Unsere Partner stehen für Zuverlässigkeit und Langlebigkeit.
+    </p>
+  </div>
+  <div class="partner-logos">
+    <div class="partner-logo">IBC Solar</div>
+    <div class="partner-logo">innov.energy</div>
+    <div class="partner-logo">Stiebel Eltron</div>
+    <div class="partner-logo">Solstis</div>
+    <div class="partner-logo">CTC AG</div>
+    <div class="partner-logo">Swisspearl</div>
+    <div class="partner-logo">Grammer Solar</div>
+    <div class="partner-logo">Meyer Bedachungen</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="kontakt">
+  <div class="section-label" style="color: rgba(13,27,42,0.6);">Jetzt starten</div>
+  <h2>Bereit für Ihre eigene Solaranlage?</h2>
+  <p>
+    Kostenlos und unverbindlich: Wir schauen uns Ihr Dach an und zeigen Ihnen, was möglich ist.<br>
+    Keine Verpflichtung — nur ein ehrliches Gespräch.
+  </p>
+  <div class="cta-btns">
+    <a href="mailto:info@solplan.ch" class="btn-dark">info@solplan.ch</a>
+    <a href="tel:0817237201" class="btn-outline-dark">081 723 72 01</a>
+  </div>
+  <p style="margin-top: 28px; font-size: 0.85rem; color: rgba(13,27,42,0.55);">
+    solplan ag · Glaserweg 9 · 8887 Mels · Mo–Fr 07:30–17:30
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="logo" style="margin-bottom: 8px;">sol<span style="color: var(--accent);">plan</span> ag</div>
+    <p style="font-size: 0.82rem; color: rgba(255,255,255,0.4);">Strom aus der Sonne — natürlich.</p>
+  </div>
+  <div class="footer-info">
+    Glaserweg 9 · CH-8887 Mels<br>
+    <a href="tel:0817237201">081 723 72 01</a> ·
+    <a href="mailto:info@solplan.ch">info@solplan.ch</a>
+  </div>
+  <div style="font-size: 0.82rem; color: rgba(255,255,255,0.3);">
+    © 2026 solplan ag<br>Alle Rechte vorbehalten
+  </div>
+</footer>
+
+</body>
+</html>

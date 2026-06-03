@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMS Solar — Marco Albrecht · Photovoltaik Wallis seit 1996</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #0A1628; --dark-2: #112240;
+  --accent: #16A34A; --accent-light: #22C55E;
+  --text: #1A1A2E; --text-muted: #6B7280;
+  --bg: #FFFFFF; --bg-light: #F8FAFC; --border: #E5E7EB;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.1; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; line-height: 1.2; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
+.section-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: block; }
+
+nav { background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.nav-logo { font-size: 1.3rem; font-weight: 800; color: var(--dark); }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+.nav-cta { background: var(--accent); color: white !important; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+
+.hero { background: var(--dark); padding: 80px 0; }
+.hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center; }
+.hero-badge { display: inline-block; background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.4); color: var(--accent-light); padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { color: white; margin-bottom: 20px; }
+.hero h1 span { color: var(--accent-light); }
+.hero-sub { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.75; margin-bottom: 28px; }
+.hero-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+.badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 500; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { background: var(--accent); color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.95rem; }
+.btn-outline { border: 2px solid rgba(255,255,255,0.3); color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+.hero-visual { background: linear-gradient(135deg, var(--dark-2) 0%, #1a3a6b 100%); border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); min-height: 360px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 24px; padding: 32px; }
+.hero-visual::before { content: ''; position: absolute; top: -20%; right: -10%; width: 280px; height: 280px; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); opacity: 0.2; }
+.hero-visual::after { content: ''; position: absolute; bottom: -15%; left: -5%; width: 200px; height: 200px; background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%); opacity: 0.1; }
+.hero-stat-card { position: relative; z-index: 1; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 16px 24px; text-align: center; width: 100%; }
+.hero-stat-card .num { font-size: 2rem; font-weight: 900; color: var(--accent-light); }
+.hero-stat-card .lbl { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-top: 2px; }
+.hero-ir-card { position: relative; z-index: 1; background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.3); border-radius: 12px; padding: 14px 20px; text-align: center; width: 100%; }
+.hero-ir-card .ir-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 4px; }
+.hero-ir-card .ir-text { font-size: 0.88rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+
+.trust-bar { background: var(--bg-light); padding: 32px 0; border-bottom: 1px solid var(--border); }
+.trust-items { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center; }
+.trust-item { padding: 10px 20px; border: 2px solid var(--border); border-radius: 8px; font-weight: 600; font-size: 0.88rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 8px; }
+
+/* INHABER SEKTION */
+.inhaber-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.inhaber-visual { border-radius: 20px; overflow: hidden; }
+.inhaber-photo { height: 420px; background: linear-gradient(150deg, #0A1628 0%, #112240 40%, #0d3320 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 40px; }
+.inhaber-initials { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--accent) 0%, var(--dark-2) 100%); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 2rem; border: 4px solid rgba(255,255,255,0.15); }
+.inhaber-name-plate { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 16px 24px; text-align: center; }
+.inhaber-name-plate .name { color: white; font-weight: 700; font-size: 1.1rem; }
+.inhaber-name-plate .role { color: var(--accent-light); font-size: 0.85rem; margin-top: 4px; }
+.inhaber-name-plate .since { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+.inhaber-text .section-label { margin-bottom: 8px; }
+.inhaber-text h2 { margin-bottom: 20px; color: var(--text); }
+.inhaber-text p { margin-bottom: 16px; }
+.inhaber-highlight { background: var(--bg-light); border-left: 4px solid var(--accent); border-radius: 0 12px 12px 0; padding: 16px 20px; margin-top: 20px; }
+.inhaber-highlight p { color: var(--text); font-style: italic; font-size: 0.95rem; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.stat-card { text-align: center; padding: 32px 16px; border-radius: 12px; background: var(--bg-light); border: 1px solid var(--border); }
+.stat-number { font-size: 2.8rem; font-weight: 900; color: var(--accent); line-height: 1; }
+.stat-suffix { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 0.88rem; color: var(--text-muted); margin-top: 8px; font-weight: 500; }
+
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.service-card { background: white; border-radius: 16px; padding: 32px; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+.service-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(22,163,74,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.service-icon svg { width: 26px; height: 26px; color: var(--accent); }
+.service-card h3 { margin-bottom: 10px; color: var(--text); }
+.service-link { display: inline-block; margin-top: 14px; color: var(--accent); font-size: 0.88rem; font-weight: 600; text-decoration: none; }
+
+/* IR HIGHLIGHT */
+.ir-section { background: var(--dark); padding: 60px 0; }
+.ir-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.ir-text .section-label { color: var(--accent-light); }
+.ir-text h2 { color: white; margin-bottom: 16px; }
+.ir-text p { color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+.ir-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(22,163,74,0.2); border: 1px solid rgba(22,163,74,0.4); border-radius: 8px; padding: 12px 20px; margin-top: 8px; }
+.ir-badge span { color: var(--accent-light); font-weight: 600; font-size: 0.9rem; }
+.ir-visual { background: linear-gradient(135deg, #0d2010 0%, #112240 50%, #0a1628 100%); border-radius: 16px; padding: 40px; display: flex; flex-direction: column; gap: 20px; border: 1px solid rgba(255,255,255,0.08); }
+.ir-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; }
+.ir-card-label { color: var(--accent-light); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.ir-card-val { color: white; font-size: 1.1rem; font-weight: 600; }
+.ir-card-desc { color: rgba(255,255,255,0.5); font-size: 0.82rem; margin-top: 4px; }
+
+.benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.benefit-item { display: flex; gap: 16px; padding: 24px; border-radius: 12px; background: var(--bg-light); border: 1px solid var(--border); }
+.benefit-check { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+.benefit-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; color: var(--text); }
+.benefit-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+.process-section { background: var(--dark); }
+.process-section h2 { color: white; }
+.process-section .section-label { color: var(--accent-light); }
+.process-sub { color: rgba(255,255,255,0.6); margin-bottom: 48px; }
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; position: relative; }
+.process-grid::before { content: ''; position: absolute; top: 24px; left: 12%; right: 12%; height: 2px; background: rgba(255,255,255,0.12); }
+.step { text-align: center; }
+.step-number { width: 48px; height: 48px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin: 0 auto 20px; position: relative; z-index: 1; }
+.step-title { color: white; font-weight: 600; margin-bottom: 8px; font-size: 1rem; }
+.step-text { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.6; }
+
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testimonial-card { background: white; border-radius: 16px; padding: 28px; border: 1px solid var(--border); }
+.testimonial-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.testimonial-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+.stars { color: #F59E0B; font-size: 0.85rem; }
+.testimonial-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+.testimonial-location { color: var(--text-muted); font-size: 0.82rem; }
+.testimonial-quote { font-size: 0.92rem; color: var(--text); font-style: italic; line-height: 1.7; }
+
+.projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.project-card { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+.project-img { height: 180px; position: relative; display: flex; align-items: flex-end; padding: 16px; }
+.project-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.72) 100%); }
+.project-label { color: white; font-size: 0.82rem; font-weight: 600; position: relative; z-index: 1; }
+.project-info { padding: 16px; background: white; }
+.project-title { font-weight: 600; font-size: 0.92rem; color: var(--text); }
+.project-meta { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+
+.cta-section { background: var(--dark); text-align: center; padding: 100px 0; }
+.cta-section h2 { color: white; margin-bottom: 16px; }
+.cta-sub { color: rgba(255,255,255,0.65); margin-bottom: 40px; }
+.contact-person { display: flex; align-items: center; gap: 16px; justify-content: center; margin-bottom: 40px; }
+.person-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--accent) 0%, var(--dark-2) 100%); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; border: 3px solid rgba(255,255,255,0.2); }
+.person-name { color: white; font-weight: 600; font-size: 1rem; text-align: left; }
+.person-role { color: rgba(255,255,255,0.55); font-size: 0.85rem; }
+.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+.btn-cta-primary { background: var(--accent); color: white; padding: 16px 36px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; }
+.btn-cta-phone { border: 2px solid rgba(255,255,255,0.25); color: white; padding: 16px 36px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; }
+.cta-trust { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+.cta-trust span { color: rgba(255,255,255,0.6); font-size: 0.88rem; }
+.cta-trust span::before { content: '✓ '; color: var(--accent-light); font-weight: 700; }
+
+footer { background: #060e1a; padding: 60px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-logo { font-size: 1.3rem; font-weight: 800; color: white; margin-bottom: 12px; }
+.footer-logo span { color: var(--accent); }
+.footer-desc { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; margin-bottom: 16px; }
+.footer-addr { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.7; }
+.footer-col h4 { color: white; font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; }
+.footer-col a { display: block; color: rgba(255,255,255,0.5); font-size: 0.88rem; text-decoration: none; margin-bottom: 8px; }
+.footer-contact p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.8; }
+.footer-contact a { color: var(--accent-light); text-decoration: none; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
+
+@media (max-width: 900px) {
+  .hero-grid, .inhaber-grid, .ir-inner { grid-template-columns: 1fr; }
+  .hero-visual { min-height: 220px; }
+  .stats-grid, .process-grid { grid-template-columns: repeat(2,1fr); }
+  .services-grid, .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .process-grid::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-logo">AMS <span>Solar</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Leistungen</a></li>
+      <li><a href="#">IR-Analyse</a></li>
+      <li><a href="#">Über uns</a></li>
+      <li><a href="#">Kontakt</a></li>
+    </ul>
+    <a href="#kontakt" class="nav-cta">Anfrage stellen</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-badge">Photovoltaik & IR-Analyse — Wallis seit 1996</span>
+        <h1>30 Jahre Wallis.<br><span>Eine Kompetenz</span><br>die man nicht kauft.</h1>
+        <p class="hero-sub">Marco Albrecht installiert seit 1996 Photovoltaikanlagen im Wallis — Swissolar-zertifiziert, mit dem einzigartigen IR-Wärmebildservice für maximale Ertragsoptimierung.</p>
+        <div class="hero-badges">
+          <span class="badge">Seit 1996 im Wallis</span>
+          <span class="badge">Swissolar zertifiziert</span>
+          <span class="badge">IR-Wärmebildanalyse</span>
+        </div>
+        <div class="hero-btns">
+          <a href="#kontakt" class="btn-primary">Anfrage stellen</a>
+          <a href="#ir-analyse" class="btn-outline">IR-Analyse entdecken</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div style="position:relative;z-index:1;">
+          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+            <circle cx="36" cy="36" r="34" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+            <path d="M36 8L44 20H28L36 8Z" fill="rgba(22,163,74,0.4)"/>
+            <rect x="20" y="24" width="32" height="24" rx="3" stroke="#22C55E" stroke-width="1.5" fill="rgba(22,163,74,0.1)"/>
+            <line x1="28" y1="24" x2="28" y2="48" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <line x1="36" y1="24" x2="36" y2="48" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <line x1="44" y1="24" x2="44" y2="48" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <line x1="20" y1="33" x2="52" y2="33" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <line x1="20" y1="42" x2="52" y2="42" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <line x1="28" y1="48" x2="28" y2="56" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+            <line x1="44" y1="48" x2="44" y2="56" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+            <line x1="22" y1="56" x2="50" y2="56" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="hero-stat-card">
+          <div class="num">30<span style="font-size:1.2rem"> Jahre</span></div>
+          <div class="lbl">Photovoltaik-Erfahrung im Wallis</div>
+        </div>
+        <div class="hero-ir-card">
+          <div class="ir-label">Einzigartiger Service</div>
+          <div class="ir-text" style="color:rgba(255,255,255,0.85);font-size:0.88rem;font-weight:500;">IR-Wärmebildanalyse</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-items">
+      <span class="trust-item">✓ Swissolar Mitglied</span>
+      <span class="trust-item">✓ IR-Wärmebildanalyse</span>
+      <span class="trust-item">✓ Seit 1996 — 30 Jahre</span>
+      <span class="trust-item">✓ Alpine Erfahrung</span>
+      <span class="trust-item">✓ Kantonale Förderung</span>
+    </div>
+  </div>
+</div>
+
+<!-- INHABER -->
+<section>
+  <div class="container">
+    <div class="inhaber-grid">
+      <div class="inhaber-visual">
+        <div class="inhaber-photo">
+          <div class="inhaber-initials">MA</div>
+          <div class="inhaber-name-plate">
+            <div class="name">Marco Albrecht</div>
+            <div class="role">Inhaber & Geschäftsführer</div>
+            <div class="since">AMS Solar · seit 1996</div>
+          </div>
+        </div>
+      </div>
+      <div class="inhaber-text">
+        <span class="section-label">Der Mensch hinter AMS Solar</span>
+        <h2>30 Jahre. Eine Person.<br>Volle Verantwortung.</h2>
+        <p>Marco Albrecht gründete AMS Solar 1996 im Wallis — als einer der ersten Photovoltaik-Spezialisten in der Region. Seither hat er hunderte von Anlagen geplant und installiert, immer persönlich, immer mit dem gleichen Anspruch.</p>
+        <p>Was ihn von anderen unterscheidet: die IR-Wärmebildanalyse. Mit Infrarotkamera prüft er bestehende Anlagen auf Verluste und Defekte — und erhöht damit den Ertrag. Diesen Service bieten sehr wenige Schweizer Installateure an.</p>
+        <div class="inhaber-highlight">
+          <p>„Ich kenne das Walliser Klima, die Dachkonstruktionen und die Besonderheiten der alpinen Photovoltaik. Das ist nicht erlernbar in einem Kurs — das kommt aus 30 Jahren Praxis."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-light);">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span class="section-label">Zahlen die überzeugen</span>
+      <h2>Erfahrung ist messbar</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">30<span class="stat-suffix">+</span></div>
+        <div class="stat-label">Jahre Photovoltaik im Wallis</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1996</div>
+        <div class="stat-label">Gegründet — einer der Ersten</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size:1.6rem;font-weight:900;color:var(--accent);line-height:1;">IR</div>
+        <div class="stat-label">Wärmebildanalyse — einzigartiger Service</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100<span class="stat-suffix">%</span></div>
+        <div class="stat-label">Persönliche Betreuung durch Marco Albrecht</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span class="section-label">Leistungen</span>
+      <h2>Was wir für Sie tun</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3L2 9l10 6 10-6-10-6zM2 15l10 6 10-6M2 9l10 6 10-6"/></svg>
+        </div>
+        <h3>Photovoltaik-Anlagen</h3>
+        <p>Sie erhalten eine massgeschneiderte PV-Anlage für Ihr Dach — geplant für alpine Bedingungen, Schneelasten und optimale Südausrichtung. Privat, Gewerbe oder Landwirtschaft.</p>
+        <a href="#" class="service-link">Mehr erfahren →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3>IR-Wärmebildanalyse</h3>
+        <p>Mit Infrarotkamera werden Defekte und Verluste in bestehenden Anlagen sichtbar gemacht — bevor sie zu echten Ertragsverlusten werden. Kaum ein anderer Installateur bietet diesen Service.</p>
+        <a href="#ir-analyse" class="service-link">Mehr erfahren →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><path d="M12 12v3m0 0h3m-3 0H9"/></svg>
+        </div>
+        <h3>Stromspeicher</h3>
+        <p>Maximale Eigenversorgung durch die richtige Batterie — Marco Albrecht berechnet die optimale Grösse für Ihren Verbrauch und montiert sie fachgerecht.</p>
+        <a href="#" class="service-link">Mehr erfahren →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Service & Wartung</h3>
+        <p>Laufende Wartung und schnelle Reparatur — als regionaler Walliser Betrieb sind wir rasch vor Ort, ohne lange Wartezeiten.</p>
+        <a href="#" class="service-link">Mehr erfahren →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IR HIGHLIGHT -->
+<section class="ir-section" id="ir-analyse">
+  <div class="container">
+    <div class="ir-inner">
+      <div class="ir-text">
+        <span class="section-label">Einzigartiger Service</span>
+        <h2>IR-Wärmebildanalyse —<br>sehen was andere nicht sehen</h2>
+        <p>Eine Photovoltaikanlage verliert schleichend an Ertrag — oft ohne sichtbaren Defekt. Defekte Zellen, Bypass-Dioden oder schlechte Verbindungen bleiben unsichtbar.</p>
+        <p>Mit professioneller Infrarotkamera macht Marco Albrecht diese Verluste sichtbar — und behebt sie, bevor sie teuer werden. Kaum ein Schweizer Installateur bietet diesen Diagnose-Service an.</p>
+        <div class="ir-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Einzigartiger Service im Wallis</span>
+        </div>
+      </div>
+      <div class="ir-visual">
+        <div class="ir-card">
+          <div class="ir-card-label">Was wird geprüft</div>
+          <div class="ir-card-val">Zellendefekte & Hotspots</div>
+          <div class="ir-card-desc">Defekte Solarzellen produzieren Wärme statt Strom — IR macht sie sofort sichtbar</div>
+        </div>
+        <div class="ir-card">
+          <div class="ir-card-label">Ergebnis</div>
+          <div class="ir-card-val">Ertragsverluste beheben</div>
+          <div class="ir-card-desc">Durch frühzeitige Erkennung können Ertragseinbussen von 5–20% vermieden werden</div>
+        </div>
+        <div class="ir-card">
+          <div class="ir-card-label">Geeignet für</div>
+          <div class="ir-card-val">Bestehende Anlagen aller Hersteller</div>
+          <div class="ir-card-desc">Unabhängig davon wer die Anlage installiert hat — AMS Solar prüft sie</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span class="section-label">Ihr Vorteil</span>
+      <h2>Warum AMS Solar?</h2>
+      <p style="max-width:560px; margin:12px auto 0;">30 Jahre Walliser Praxis, Swissolar-Zertifizierung und ein Service den kaum jemand anbietet.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <svg class="benefit-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+          <div class="benefit-title">IR-Wärmebildanalyse — einzigartig</div>
+          <div class="benefit-text">Einer der wenigen Schweizer Installateure mit professionellem IR-Diagnose-Service. Ertragseinbussen werden gefunden bevor sie teuer werden.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <svg class="benefit-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+          <div class="benefit-title">30 Jahre alpine Erfahrung</div>
+          <div class="benefit-text">Schneelasten, Ausrichtung, Walliser Klima — Marco Albrecht kennt die Besonderheiten der alpinen Photovoltaik aus 30 Jahren Praxis.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <svg class="benefit-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+          <div class="benefit-title">Swissolar zertifiziert</div>
+          <div class="benefit-text">Als Swissolar-Mitglied arbeiten wir nach Schweizer Qualitätsstandards und bleiben laufend weitergebildet.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <svg class="benefit-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+          <div class="benefit-title">Persönliche Betreuung</div>
+          <div class="benefit-text">Marco Albrecht betreut Ihr Projekt selbst — kein Subunternehmer, kein anonymes Team. Persönlich von der Offerte bis zur Abnahme.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <svg class="benefit-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+          <div class="benefit-title">Kantonale Förderung</div>
+          <div class="benefit-text">Wir kennen die Walliser Förderprogramme und begleiten Sie durch die Anmeldung — für das Maximum an Unterstützung.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <svg class="benefit-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+          <div class="benefit-title">Regional — schnell vor Ort</div>
+          <div class="benefit-text">Als Walliser Betrieb sind wir rasch bei Ihnen — kurze Wege für Beratung, Installation und Service.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span class="section-label">Ablauf</span>
+      <h2>Von der Anfrage zur Anlage</h2>
+      <p class="process-sub">Vier Schritte — persönlich begleitet von Marco Albrecht.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step"><div class="step-number">1</div><div class="step-title">Beratung</div><p class="step-text">Dachbesichtigung, Potenzialanalyse, ehrliche Empfehlung — ohne Verkaufsdruck.</p></div>
+      <div class="step"><div class="step-number">2</div><div class="step-title">Offerte</div><p class="step-text">Klare Offerte mit Fördergeldern bereits eingerechnet — transparent und vollständig.</p></div>
+      <div class="step"><div class="step-number">3</div><div class="step-title">Installation</div><p class="step-text">Professionelle Montage durch Marco Albrecht und sein Team — sauber und termingerecht.</p></div>
+      <div class="step"><div class="step-number">4</div><div class="step-title">Sie entscheiden</div><p class="step-text">Inbetriebnahme, Einweisung, laufender Service — Sie sind nie auf sich allein gestellt.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--bg-light);">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span class="section-label">Kundenstimmen</span>
+      <h2>Was unsere Kunden sagen</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-top">
+          <div class="testimonial-avatar">FB</div>
+          <div><div class="stars">★★★★★</div><div class="testimonial-name">Familie Bonvin</div><div class="testimonial-location">Visp, VS</div></div>
+        </div>
+        <p class="testimonial-quote">„Herr Albrecht hat unsere alte Anlage mit IR-Kamera geprüft und einen Defekt gefunden, den wir nie gesehen hätten. Seither produzieren wir wieder voll."</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-top">
+          <div class="testimonial-avatar">PZ</div>
+          <div><div class="stars">★★★★★</div><div class="testimonial-name">Paul Z., Landwirt</div><div class="testimonial-location">Bitsch, VS</div></div>
+        </div>
+        <p class="testimonial-quote">„Als Landwirt wollte ich jemanden der alpine Verhältnisse kennt. AMS Solar hat genau das geliefert — professionell und persönlich, ohne Umwege."</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-top">
+          <div class="testimonial-avatar">MF</div>
+          <div><div class="stars">★★★★★</div><div class="testimonial-name">Martina F.</div><div class="testimonial-location">Brig, VS</div></div>
+        </div>
+        <p class="testimonial-quote">„30 Jahre Erfahrung merkt man sofort. Die Beratung war ehrlich, die Installation präzise. Ich würde Marco Albrecht jederzeit weiterempfehlen."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="referenzen">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <span class="section-label">Referenzen</span>
+      <h2>Projekte im Wallis</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-img" style="background: linear-gradient(135deg, #0A1628 0%, #112240 50%, #0d3320 100%);"><span class="project-label">PV-Anlage Einfamilienhaus</span></div>
+        <div class="project-info"><div class="project-title">Einfamilienhaus Neubau</div><div class="project-meta">Bitsch, VS · 2024</div></div>
+      </div>
+      <div class="project-card">
+        <div class="project-img" style="background: linear-gradient(135deg, #0f2a40 0%, #0d3320 50%, #112240 100%);"><span class="project-label">PV + Stromspeicher</span></div>
+        <div class="project-info"><div class="project-title">Eigenverbrauchsoptimierung</div><div class="project-meta">Visp, VS · 2024</div></div>
+      </div>
+      <div class="project-card">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a2a10 0%, #0A1628 50%, #0d3320 100%);"><span class="project-label">IR-Diagnose & Sanierung</span></div>
+        <div class="project-info"><div class="project-title">Bestandsanlage optimiert</div><div class="project-meta">Brig, VS · 2023</div></div>
+      </div>
+      <div class="project-card">
+        <div class="project-img" style="background: linear-gradient(135deg, #0A1628 0%, #1a3020 50%, #112240 100%);"><span class="project-label">Agrar-PV Landwirtschaft</span></div>
+        <div class="project-info"><div class="project-title">Landwirtschaftsbetrieb</div><div class="project-meta">Oberwallis · 2023</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="kontakt">
+  <div class="container">
+    <span class="section-label" style="color: var(--accent-light);">KOSTENLOS & UNVERBINDLICH</span>
+    <h2>Solaranlage im Wallis —<br>mit 30 Jahren Erfahrung.</h2>
+    <p class="cta-sub">Kostenlose Beratung und unverbindliche Offerte — persönlich von Marco Albrecht.</p>
+    <div class="contact-person">
+      <div class="person-avatar">MA</div>
+      <div>
+        <div class="person-name">Marco Albrecht</div>
+        <div class="person-role">Inhaber · AMS Solar · seit 1996</div>
+      </div>
+    </div>
+    <div class="cta-btns">
+      <a href="mailto:info@ams-solar.ch" class="btn-cta-primary">Anfrage stellen</a>
+      <a href="tel:+41279272391" class="btn-cta-phone">027 927 23 91</a>
+    </div>
+    <div class="cta-trust">
+      <span>Kostenlose Beratung</span>
+      <span>Unverbindliche Offerte</span>
+      <span>Persönlich betreut</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">AMS <span>Solar</span></div>
+        <p class="footer-desc">Photovoltaik und IR-Wärmebildanalyse im Wallis — Marco Albrecht, seit 1996. Swissolar-zertifiziert.</p>
+        <p class="footer-addr">Ebnetstrasse 110<br>3982 Bitsch, Wallis</p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <a href="#">Photovoltaik</a>
+        <a href="#">IR-Wärmebildanalyse</a>
+        <a href="#">Stromspeicher</a>
+        <a href="#">Service & Wartung</a>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Kontakt</h4>
+        <p><a href="tel:+41279272391">027 927 23 91</a><br><a href="tel:+41794150651">079 415 06 51</a><br><a href="mailto:info@ams-solar.ch">info@ams-solar.ch</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AMS Solar · Marco Albrecht · Bitsch</p>
+      <p style="color:rgba(255,255,255,0.2); font-size:0.78rem;">Konzept erstellt von Yazan Hajir</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

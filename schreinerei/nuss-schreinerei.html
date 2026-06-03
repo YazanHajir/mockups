@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H.R. Nuss Schreinerei — Zürich</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --braun-tief: #1c0f06;
+      --braun: #3d1f0d;
+      --holz: #7a4b2a;
+      --gold: #c8913a;
+      --goldHell: #e8b86d;
+      --creme: #faf6f0;
+      --hellCreme: #fff9f2;
+      --text: #1c0f06;
+      --muted: #7a6555;
+      --weiss: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--hellCreme);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 15, 6, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 64px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(200,145,58,0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 38px; height: 38px;
+      background: var(--gold);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--braun-tief);
+    }
+
+    .logo-text {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--goldHell); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--braun-tief) !important;
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--goldHell) !important; color: var(--braun-tief) !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: var(--braun-tief);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 160px 80px 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .hero-eyebrow .line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow span {
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .hero-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    .hero-left h1 em {
+      font-style: italic;
+      color: var(--goldHell);
+    }
+
+    .hero-left p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--braun-tief);
+      padding: 15px 34px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-gold:hover {
+      background: var(--goldHell);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(200,145,58,0.35);
+    }
+
+    .btn-ghost {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--goldHell); }
+    .btn-ghost::after { content: '→'; }
+
+    .hero-right {
+      position: relative;
+      background: linear-gradient(135deg, #2a1508 0%, #4a2510 50%, var(--holz) 100%);
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-badge-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      padding: 60px;
+    }
+
+    .badge-year {
+      text-align: center;
+    }
+
+    .badge-year .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 9rem;
+      font-weight: 900;
+      line-height: 0.9;
+      color: rgba(255,255,255,0.06);
+      letter-spacing: -4px;
+    }
+
+    .badge-since {
+      background: rgba(200,145,58,0.12);
+      border: 1px solid rgba(200,145,58,0.35);
+      border-radius: 12px;
+      padding: 32px 40px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-since .big {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+    }
+
+    .badge-since .sub {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 10px;
+      display: block;
+    }
+
+    .badge-since .detail {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 8px;
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--gold);
+      padding: 20px 64px;
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .trust-item .ti-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--braun-tief);
+    }
+
+    .trust-item .ti-lbl {
+      font-size: 0.82rem;
+      color: rgba(28,15,6,0.65);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .trust-sep { width: 1px; height: 32px; background: rgba(28,15,6,0.2); }
+
+    /* ─── LEISTUNGEN ─── */
+    .section {
+      padding: 110px 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow .line { width: 32px; height: 1px; background: var(--gold); }
+    .eyebrow span { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+
+    h2.s-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--braun);
+      line-height: 1.1;
+    }
+
+    .section-bg { background: var(--creme); }
+    .section-dark { background: var(--braun); }
+
+    .leistungen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(61,31,13,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .l-card {
+      background: #fff;
+      padding: 44px 36px;
+      transition: background 0.25s;
+      cursor: default;
+      position: relative;
+    }
+
+    .l-card:hover { background: var(--braun); }
+    .l-card:hover .l-title, .l-card:hover .l-text { color: #fff; }
+    .l-card:hover .l-num { color: rgba(255,255,255,0.15); }
+
+    .l-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(61,31,13,0.07);
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color 0.25s;
+    }
+
+    .l-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--braun);
+      margin-bottom: 14px;
+      transition: color 0.25s;
+    }
+
+    .l-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      transition: color 0.25s;
+    }
+
+    /* ─── GESCHICHTE ─── */
+    .geschichte {
+      background: var(--braun);
+      padding: 110px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .geschichte h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    .geschichte h2 em { font-style: italic; color: var(--goldHell); }
+
+    .geschichte p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: start;
+    }
+
+    .tl-item:last-child { border-bottom: none; }
+
+    .tl-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .tl-text {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      padding-top: 3px;
+    }
+
+    /* ─── TESTIMONIAL ─── */
+    .testimonial-section {
+      background: var(--hellCreme);
+      padding: 110px 80px;
+      text-align: center;
+    }
+
+    .testimonial-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      line-height: 0.5;
+      color: var(--gold);
+      opacity: 0.4;
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--braun);
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+
+    .quote-author {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── KONTAKT ─── */
+    .kontakt {
+      background: var(--braun-tief);
+      padding: 110px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .kontakt-links h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .kontakt-links h2 em { color: var(--goldHell); font-style: italic; }
+
+    .kontakt-links p {
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+
+    .kontakt-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .kontakt-list li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+    }
+
+    .k-icon {
+      width: 40px; height: 40px;
+      background: rgba(200,145,58,0.12);
+      border: 1px solid rgba(200,145,58,0.25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .kontakt-form {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 44px;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+
+    .form-group textarea { height: 100px; resize: none; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--braun-tief);
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover { background: var(--goldHell); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0d0704;
+      color: rgba(255,255,255,0.25);
+      padding: 28px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    footer span { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 28px; }
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 120px 32px 60px; }
+      .hero-left h1 { font-size: 3rem; }
+      .hero-right { min-height: 300px; }
+      .badge-year .num { font-size: 5rem; }
+      .trust-bar { gap: 32px; flex-wrap: wrap; padding: 20px 28px; }
+      .section { padding: 72px 32px; }
+      .leistungen-grid { grid-template-columns: 1fr; }
+      .geschichte { grid-template-columns: 1fr; padding: 72px 32px; gap: 48px; }
+      .testimonial-section { padding: 72px 32px; }
+      .quote-text { font-size: 1.2rem; }
+      .kontakt { grid-template-columns: 1fr; padding: 72px 32px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">N</div>
+    <div class="logo-text">
+      H.R. Nuss
+      <span>Bau- & Möbelschreinerei</span>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#geschichte">Geschichte</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="nav-cta">Anfrage stellen</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="line"></div>
+      <span>Schreinerei · Zürich · Seit 1912</span>
+    </div>
+    <h1>Handwerk,<br>das bleibt.<br><em>Seit 1912.</em></h1>
+    <p>Wir fertigen Möbel, Türen, Fenster und Innenausbauten mit echter Handwerkskunst — massgenau, langlebig, persönlich betreut.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-gold">Projekt besprechen</a>
+      <a href="#leistungen" class="btn-ghost">Leistungen ansehen</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-badge-wrap">
+      <div class="badge-year">
+        <div class="num">1912</div>
+      </div>
+      <div class="badge-since">
+        <span class="big">110+</span>
+        <span class="sub">Jahre Schreinertradition</span>
+        <div class="detail">Vier Generationen Familie Nuss</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="ti-num">1912</div>
+    <div class="ti-lbl">Gegründet<br>in Zürich</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">4</div>
+    <div class="ti-lbl">Generationen<br>Familienhandwerk</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">100%</div>
+    <div class="ti-lbl">Massarbeit<br>von Hand</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="ti-num">∞</div>
+    <div class="ti-lbl">Projekte<br>kein Minimum</div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="section section-bg" id="leistungen">
+  <div class="section-header">
+    <div>
+      <div class="eyebrow"><div class="line"></div><span>Was wir machen</span></div>
+      <h2 class="s-title">Unsere Leistungen</h2>
+    </div>
+  </div>
+  <div class="leistungen-grid">
+    <div class="l-card">
+      <div class="l-num">01</div>
+      <div class="l-title">Möbelbau nach Mass</div>
+      <div class="l-text">Vom ersten Skizze bis zur Montage — wir fertigen Möbel die genau zu Ihrem Raum passen. Kein Kompromiss, nur Massarbeit.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">02</div>
+      <div class="l-title">Türen & Fenster</div>
+      <div class="l-text">Reparaturen, Umbauten und Neuanfertigungen aus Holz — robust, schön und termingerecht. Auch für einzelne Stücke.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">03</div>
+      <div class="l-title">Innenausbau</div>
+      <div class="l-text">Küchen, Einbauschränke, Trennwände, Renovationen — wir planen und bauen mit dem gleichen Anspruch wie seit 1912.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">04</div>
+      <div class="l-title">Musikinstrumente</div>
+      <div class="l-text">Bau und Reparatur von Streichinstrumenten — eine seltene Spezialität, die wir mit grosser Leidenschaft pflegen.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">05</div>
+      <div class="l-title">Reparaturen</div>
+      <div class="l-text">Kein Auftrag zu klein — wir reparieren Möbel, Türen und Schränke schnell und sauber. Persönlicher Service, direkte Absprache.</div>
+    </div>
+    <div class="l-card">
+      <div class="l-num">06</div>
+      <div class="l-title">Beratung</div>
+      <div class="l-text">Sie haben eine Idee, aber noch kein Konzept? Wir beraten Sie unverbindlich — kostenlos und auf Augenhöhe.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GESCHICHTE -->
+<section class="geschichte" id="geschichte">
+  <div>
+    <div class="eyebrow"><div class="line"></div><span style="color:var(--goldHell)">Unsere Geschichte</span></div>
+    <h2>Über <em>100 Jahre</em><br>im Dienst<br>des Handwerks.</h2>
+    <p>Was 1912 als kleine Werkstatt begann, ist heute ein Familienbetrieb mit vier Generationen Geschichte — und demselben Anspruch: Qualität, die hält.</p>
+    <p>Robert Nuss führt das Erbe seines Grossvaters weiter — mit moderner Technik, aber dem gleichen Handwerksstolz.</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1912</div>
+      <div class="tl-text">Gründung der Schreinerei Nuss in Zürich durch den Urgrossvater</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1940s</div>
+      <div class="tl-text">Übernahme durch die zweite Generation — Erweiterung auf Innenausbau</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1970s</div>
+      <div class="tl-text">Spezialisierung auf Massanfertigung und Streichinstrumentenbau</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">Heute</div>
+      <div class="tl-text">Robert Nuss führt den Betrieb — persönlich, präzise, mit 110 Jahren Erfahrung im Rücken</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-wrap">
+    <span class="quote-mark">"</span>
+    <div class="quote-text">Wir haben die Schreinerei Nuss für unsere Küche und einen Einbauschrank engagiert. Die Qualität und Sorgfalt waren aussergewöhnlich — und Herr Nuss war immer direkt erreichbar.</div>
+    <div class="quote-author">— Familie Meier, Zürich</div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div class="kontakt-links">
+    <div class="eyebrow"><div class="line"></div><span style="color:var(--goldHell)">Kontakt</span></div>
+    <h2>Projekt<br><em>besprechen.</em></h2>
+    <p>Wir nehmen uns Zeit für Ihr Anliegen — persönlich, direkt und ohne Warteschlange.</p>
+    <ul class="kontakt-list">
+      <li><div class="k-icon">📞</div> 044 241 80 86</li>
+      <li><div class="k-icon">📱</div> 079 678 44 32</li>
+      <li><div class="k-icon">✉️</div> info@hrnuss.ch</li>
+      <li><div class="k-icon">📍</div> Zürich</li>
+    </ul>
+  </div>
+  <div class="kontakt-form">
+    <div class="form-title">Nachricht schreiben</div>
+    <div class="form-row">
+      <div class="form-group"><label>Name</label><input type="text" placeholder="Ihr Name"></div>
+      <div class="form-group"><label>Telefon</label><input type="text" placeholder="Ihre Nummer"></div>
+    </div>
+    <div class="form-group"><label>Projekt</label><input type="text" placeholder="Was darf es sein?"></div>
+    <div class="form-group"><label>Nachricht</label><textarea placeholder="Kurze Beschreibung Ihres Projekts..."></textarea></div>
+    <button class="submit-btn">Nachricht senden →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2024 <span>H.R. Nuss Bau- und Möbelschreinerei</span> · Zürich</div>
+  <div>Gegründet 1912 · Vier Generationen Handwerk</div>
+</footer>
+
+</body>
+</html>

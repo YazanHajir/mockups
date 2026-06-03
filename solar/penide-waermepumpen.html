@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PENIDE Wärmepumpen — Ihre Experten in Stetten AG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --dark:#0e1f2e; --navy:#162d42; --accent:#e07b2a; --light:#f5f7fa; --white:#fff; --muted:#5e7890; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #1a2e42; background: var(--white); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(14,31,46,0.97); backdrop-filter: blur(8px); padding: 0 48px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.2rem; font-weight: 800; color: var(--white); letter-spacing: -0.3px; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 0.87rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { background: var(--accent); color: var(--white); padding: 10px 20px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; text-decoration: none; }
+
+    .hero { min-height: 100vh; background: linear-gradient(to right, rgba(14,31,46,0.95) 55%, rgba(14,31,46,0.5) 100%), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat; display: flex; align-items: center; padding: 120px 48px 80px; }
+    .hero-badge { display: inline-block; background: rgba(224,123,42,0.15); border: 1px solid rgba(224,123,42,0.35); color: var(--accent); font-size: 0.73rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 4px; margin-bottom: 26px; }
+    .hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; color: var(--white); line-height: 1.12; letter-spacing: -1px; margin-bottom: 18px; }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero p { font-size: 1.03rem; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 34px; max-width: 520px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+    .btn-p { background: var(--accent); color: var(--white); padding: 15px 28px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; text-decoration: none; box-shadow: 0 4px 18px rgba(224,123,42,0.38); }
+    .btn-s { border: 2px solid rgba(255,255,255,0.35); color: var(--white); padding: 14px 26px; border-radius: 8px; font-weight: 600; font-size: 0.92rem; text-decoration: none; }
+    .hero-proof { display: flex; gap: 28px; flex-wrap: wrap; }
+    .proof-item { color: rgba(255,255,255,0.6); font-size: 0.82rem; }
+    .proof-item::before { content: '✓ '; color: var(--accent); font-weight: 700; }
+
+    .trust { background: var(--dark); padding: 22px 48px; display: flex; align-items: center; justify-content: center; gap: 44px; flex-wrap: wrap; }
+    .trust-item { color: rgba(255,255,255,0.65); font-size: 0.83rem; text-align: center; }
+    .trust-item strong { display: block; font-size: 1.5rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 4px; }
+    .trust-div { width: 1px; height: 32px; background: rgba(255,255,255,0.1); }
+
+    section { padding: 88px 48px; }
+    .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; color: var(--dark); letter-spacing: -0.5px; line-height: 1.18; margin-bottom: 14px; }
+    .sublead { font-size: 1.03rem; color: var(--muted); line-height: 1.7; max-width: 540px; margin-bottom: 44px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+
+    .leistungen { background: var(--light); }
+    .svc { background: var(--white); border-radius: 12px; padding: 26px 22px; border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .3s, transform .3s; }
+    .svc:hover { box-shadow: 0 10px 32px rgba(0,0,0,0.09); transform: translateY(-3px); }
+    .svc-ico { width: 46px; height: 46px; background: rgba(224,123,42,0.12); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; }
+    .svc h3 { font-size: 0.97rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .svc p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
+
+    .inhaber { background: var(--dark); }
+    .inhaber h2 { color: var(--white); }
+    .inhaber .sublead { color: rgba(255,255,255,0.55); }
+    .inhaber-card { background: var(--navy); border-radius: 16px; padding: 36px; color: var(--white); }
+    .inhaber-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+    .inhaber-card .rolle { color: var(--accent); font-size: 0.82rem; font-weight: 600; margin-bottom: 16px; }
+    .inhaber-card p { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+
+    .ref-section { background: var(--light); }
+    .ref-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .ref-card { border-radius: 12px; overflow: hidden; position: relative; aspect-ratio: 4/3; background: var(--navy); }
+    .ref-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .ref-card:hover img { transform: scale(1.04); }
+    .ref-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,31,46,0.9) 0%, transparent 55%); display: flex; align-items: flex-end; padding: 18px; }
+    .ref-tag { display: inline-block; background: var(--accent); color: var(--white); font-size: 0.67rem; font-weight: 700; padding: 3px 8px; border-radius: 3px; margin-bottom: 6px; }
+    .ref-info h4 { font-size: 0.9rem; font-weight: 700; color: var(--white); }
+    .ref-info p { font-size: 0.73rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+    .zertifikate { background: var(--white); padding: 36px 48px; display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; border-top: 1px solid rgba(0,0,0,0.07); }
+    .zert-logo { background: var(--light); border: 1px solid rgba(0,0,0,0.07); border-radius: 7px; padding: 11px 18px; font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+
+    .cta-section { background: linear-gradient(135deg, var(--accent) 0%, #c06820 100%); text-align: center; padding: 76px 48px; }
+    .cta-section h2 { color: var(--white); margin-bottom: 12px; }
+    .cta-section p { color: rgba(255,255,255,0.82); font-size: 1.03rem; margin-bottom: 32px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--accent); padding: 15px 28px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; text-decoration: none; }
+    .btn-outline-white { border: 2px solid rgba(255,255,255,0.7); color: var(--white); padding: 14px 26px; border-radius: 8px; font-weight: 600; font-size: 0.92rem; text-decoration: none; }
+
+    footer { background: var(--dark); color: rgba(255,255,255,0.4); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; font-size: 0.82rem; }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media(max-width:900px) { nav{padding:0 20px;} nav .nav-links{display:none;} section{padding:60px 20px;} .grid3,.grid2,.ref-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">PENIDE <span>Wärmepumpen</span></div>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+    <li><a href="#inhaber">Über uns</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Beratung anfragen</a>
+</nav>
+
+<section class="hero">
+  <div style="max-width:620px">
+    <div class="hero-badge">12 Jahre Erfahrung · Stetten AG · Deutschschweiz</div>
+    <h1>Ihre Wärmepumpe —<br><em>professionell geplant,</em><br>zuverlässig installiert.</h1>
+    <p>PENIDE ist Ihr Spezialist für Wärmepumpen und Kühlanlagen in der Region Aargau. Verkauf, Installation, Service und Reparatur — alles aus einer Hand, seit über 12 Jahren.</p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-p">Kostenlose Beratung anfragen</a>
+      <a href="#leistungen" class="btn-s">Unsere Leistungen</a>
+    </div>
+    <div class="hero-proof">
+      <span class="proof-item">12+ Jahre Erfahrung</span>
+      <span class="proof-item">Verkauf & Installation</span>
+      <span class="proof-item">Service & Reparatur</span>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="trust-item"><strong>12+</strong>Jahre Erfahrung</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>100%</strong>Eigene Ausführung</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>1</strong>Ansprechpartner</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>Aargau</strong>Regional & persönlich</div>
+</div>
+
+<section class="leistungen" id="leistungen">
+  <div class="label">Was wir machen</div>
+  <h2>Wärmepumpen & Kühlanlagen —<br>komplett aus einer Hand</h2>
+  <p class="sublead">Von der Beratung über die Installation bis zum Langzeit-Service: PENIDE begleitet Sie durch den gesamten Prozess — persönlich und zuverlässig.</p>
+  <div class="grid3">
+    <div class="svc"><div class="svc-ico">🌡️</div><h3>Wärmepumpen</h3><p>Luft-Wasser, Sole-Wasser, Wasser-Wasser — wir beraten Sie zur optimalen Lösung für Ihr Gebäude und Ihre Heizlast.</p></div>
+    <div class="svc"><div class="svc-ico">❄️</div><h3>Kühlanlagen</h3><p>Professionelle Klimatisierung für Wohn- und Gewerberäume. Effizient, leise, langlebig.</p></div>
+    <div class="svc"><div class="svc-ico">🔧</div><h3>Installation</h3><p>Fachgerechte Montage durch unser erfahrenes Team — termingerecht und sauber ausgeführt.</p></div>
+    <div class="svc"><div class="svc-ico">🛠️</div><h3>Service & Wartung</h3><p>Regelmässige Wartung verlängert die Lebensdauer Ihrer Anlage und sichert die Effizienz. Wir bleiben Ihr Partner.</p></div>
+    <div class="svc"><div class="svc-ico">🔁</div><h3>Reparatur</h3><p>Schnelle Diagnose und Reparatur bei Störungen — damit Ihre Anlage so schnell wie möglich wieder läuft.</p></div>
+    <div class="svc"><div class="svc-ico">☀️</div><h3>Solar & Wärmepumpe</h3><p>Die Kombination aus Photovoltaik und Wärmepumpe maximiert Ihren Eigenverbrauch — wir planen das System für Sie.</p></div>
+  </div>
+</section>
+
+<section class="inhaber" id="inhaber">
+  <div class="label">Wer wir sind</div>
+  <h2>Inhabergeführt —<br>mit persönlicher Verantwortung</h2>
+  <p class="sublead">Bei PENIDE sprechen Sie direkt mit dem Inhaber. Kein Callcenter, keine langen Wartezeiten — persönliche Beratung die funktioniert.</p>
+  <div class="grid2">
+    <div class="inhaber-card">
+      <h3>Jose Penide Turnes</h3>
+      <div class="rolle">Inhaber & Geschäftsführer · PENIDE Wärmepumpen GmbH</div>
+      <p>Seit über 12 Jahren ist Jose Penide Turnes Ihr Ansprechpartner für Wärmepumpen und Kühlanlagen in der Region Aargau. Sein Versprechen: Qualität, Effizienz und Kundenzufriedenheit — bei jedem Projekt persönlich sichergestellt.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="display:flex; gap:14px; padding:20px; background:var(--navy); border-radius:12px; align-items:center;"><span style="font-size:1.6rem;">🏆</span><div style="color:rgba(255,255,255,0.8); font-size:0.88rem; line-height:1.5;"><strong style="color:var(--white); display:block;">12+ Jahre Erfahrung</strong>Zuverlässige Lösungen für Privat- und Gewerbekunden</div></div>
+      <div style="display:flex; gap:14px; padding:20px; background:var(--navy); border-radius:12px; align-items:center;"><span style="font-size:1.6rem;">📍</span><div style="color:rgba(255,255,255,0.8); font-size:0.88rem; line-height:1.5;"><strong style="color:var(--white); display:block;">Regional im Aargau</strong>Kurze Wege, schnelle Reaktionszeit</div></div>
+      <div style="display:flex; gap:14px; padding:20px; background:var(--navy); border-radius:12px; align-items:center;"><span style="font-size:1.6rem;">🤝</span><div style="color:rgba(255,255,255,0.8); font-size:0.88rem; line-height:1.5;"><strong style="color:var(--white); display:block;">Ein Ansprechpartner</strong>Von der Beratung bis zum Service</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ref-section" id="referenzen">
+  <div class="label">Referenzprojekte</div>
+  <h2>Realisierte Anlagen —<br>in der Region Aargau</h2>
+  <p class="sublead">Jede Anlage ist individuell. Diese Projekte zeigen die Bandbreite unserer Arbeit — von Einfamilienhäusern bis zu Gewerbebauten.</p>
+  <div class="ref-grid">
+    <div class="ref-card"><img src="https://images.unsplash.com/photo-1631193816258-28b44b21e78b?w=600&q=80" alt=""><div class="ref-overlay"><div class="ref-info"><div class="ref-tag">Stetten · Einfamilienhaus</div><h4>Luft-Wasser Wärmepumpe</h4><p>Neubau · 12 kW · Fussbodenheizung</p></div></div></div>
+    <div class="ref-card"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt=""><div class="ref-overlay"><div class="ref-info"><div class="ref-tag">Wettingen · Gewerbe</div><h4>Kälteanlage & Klimatisierung</h4><p>Serverraum · Präzisionskühlung</p></div></div></div>
+    <div class="ref-card"><img src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?w=600&q=80" alt=""><div class="ref-overlay"><div class="ref-info"><div class="ref-tag">Baden · Mehrfamilienhaus</div><h4>Wärmepumpe + PV-Anlage</h4><p>Kombisystem · Eigenverbrauch maximiert</p></div></div></div>
+  </div>
+</section>
+
+<div class="zertifikate">
+  <span style="font-size:0.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-right:12px;">Partner & Hersteller</span>
+  <div class="zert-logo">Viessmann</div>
+  <div class="zert-logo">Bosch</div>
+  <div class="zert-logo">Nibe</div>
+  <div class="zert-logo">Stiebel Eltron</div>
+  <div class="zert-logo">Daikin</div>
+</div>
+
+<section class="cta-section" id="kontakt">
+  <div class="label" style="color:rgba(255,255,255,0.6)">Jetzt anfragen</div>
+  <h2>Bereit für Ihre neue Wärmepumpe?</h2>
+  <p>Kostenlose Beratung — Jose Penide Turnes schaut sich Ihre Situation persönlich an. Kein Callcenter, keine Wartezeiten.</p>
+  <div class="cta-btns">
+    <a href="mailto:service@penidewarmepumpen.ch" class="btn-white">service@penidewarmepumpen.ch</a>
+    <a href="tel:0565362787" class="btn-outline-white">056 536 27 87</a>
+  </div>
+  <p style="margin-top:22px; font-size:0.82rem; color:rgba(255,255,255,0.5);">PENIDE Wärmepumpen und Kühlanlagen GmbH · Fabrikstrasse 5 · 5608 Stetten AG</p>
+</section>
+
+<footer>
+  <div class="logo" style="font-size:1.1rem;">PENIDE <span>Wärmepumpen</span></div>
+  <div>Fabrikstrasse 5 · 5608 Stetten AG · <a href="mailto:service@penidewarmepumpen.ch">service@penidewarmepumpen.ch</a> · <a href="tel:0565362787">056 536 27 87</a></div>
+  <div>© 2026 PENIDE Wärmepumpen und Kühlanlagen GmbH</div>
+</footer>
+
+</body>
+</html>

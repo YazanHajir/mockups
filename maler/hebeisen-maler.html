@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fritz Hebeisen AG – Ihr Maler in Winterthur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --schwarz:   #111110;
+    --dunkel:    #1c1b18;
+    --mittel:    #2e2c27;
+    --grau:      #6b6860;
+    --grau-hell: #a8a59f;
+    --linie:     rgba(0,0,0,0.10);
+    --gruen:     #4d7c62;
+    --gruen-hell:#6a9e7f;
+    --creme:     #f5f2ec;
+    --hell:      #faf8f5;
+    --weiss:     #ffffff;
+    --gold:      #b89a5a;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--hell); color: var(--dunkel); line-height: 1.6; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; height: 76px;
+    background: rgba(250,248,245,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--linie);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  .nav-mark {
+    width: 42px; height: 42px;
+    background: var(--dunkel); color: var(--weiss);
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: -0.02em;
+  }
+  .nav-wordmark { display: flex; flex-direction: column; }
+  .nav-name { font-size: 14px; font-weight: 600; color: var(--dunkel); letter-spacing: 0.03em; }
+  .nav-sub { font-size: 11px; color: var(--grau); font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a { color: var(--grau); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dunkel); }
+  .nav-tel { font-size: 13px; font-weight: 600; color: var(--dunkel); text-decoration: none; border-left: 1px solid var(--linie); padding-left: 28px; }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 100vh; padding-top: 76px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 72px 80px 80px;
+    background: var(--hell);
+  }
+  .eyebrow {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 36px;
+  }
+  .eyebrow-line { width: 28px; height: 1px; background: var(--gruen); }
+  .eyebrow span {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gruen);
+  }
+  .hero-left h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 4vw, 60px);
+    font-weight: 400; line-height: 1.12;
+    color: var(--dunkel); margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .hero-left h1 em { font-style: italic; color: var(--gruen); }
+  .hero-left h1 strong { font-weight: 700; }
+  .hero-left p {
+    font-size: 16px; line-height: 1.75; color: var(--grau);
+    max-width: 420px; margin-bottom: 48px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-dark {
+    background: var(--dunkel); color: var(--weiss);
+    padding: 14px 30px; font-size: 14px; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+  .btn-dark:hover { background: var(--mittel); }
+  .btn-outline {
+    border: 1.5px solid var(--dunkel); color: var(--dunkel);
+    padding: 13px 28px; font-size: 14px; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: var(--dunkel); color: var(--weiss); }
+
+  /* Hero right — photo collage */
+  .hero-right {
+    display: grid; grid-template-rows: 1fr 1fr; grid-template-columns: 1fr 1fr;
+    gap: 3px; background: var(--dunkel);
+  }
+  .hero-photo {
+    overflow: hidden; position: relative;
+  }
+  .hero-photo-inner {
+    width: 100%; height: 100%; min-height: 220px;
+    background-size: cover; background-position: center;
+    transition: transform 0.6s ease;
+  }
+  .hero-photo:hover .hero-photo-inner { transform: scale(1.04); }
+  /* Simulated paint reference photos using gradients */
+  .p1 { background: linear-gradient(135deg, #d4cfc8 0%, #bfb8ae 40%, #a8a09a 100%); }
+  .p2 { background: linear-gradient(135deg, #e8e2d8 0%, #c8bfb0 50%, #b0a898 100%); }
+  .p3 { background: linear-gradient(135deg, #c5d4c8 0%, #9ab5a2 50%, #7a9e88 100%); }
+  .p4 { background: linear-gradient(135deg, #e2ddd5 0%, #d5cfc5 50%, #c0b8ac 100%); }
+  .hero-photo.span-col { grid-column: 1 / -1; }
+  .photo-label {
+    position: absolute; bottom: 16px; left: 16px;
+    background: rgba(17,17,16,0.7); color: var(--weiss);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 6px 12px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── STATS ── */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--linie);
+    border-bottom: 1px solid var(--linie);
+    background: var(--weiss);
+  }
+  .stat-item {
+    padding: 36px 40px;
+    border-right: 1px solid var(--linie);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700; color: var(--dunkel);
+    line-height: 1; margin-bottom: 6px;
+  }
+  .stat-label { font-size: 12px; color: var(--grau); font-weight: 500; letter-spacing: 0.04em; }
+
+  /* ── LEISTUNGEN ── */
+  .leistungen { padding: 100px 80px; background: var(--hell); }
+  .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; gap: 40px; flex-wrap: wrap; }
+  .section-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .section-eyebrow .el { width: 28px; height: 1px; background: var(--gruen); }
+  .section-eyebrow span { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gruen); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 2.8vw, 44px); font-weight: 400;
+    color: var(--dunkel); line-height: 1.15; letter-spacing: -0.01em;
+  }
+  .section-title em { font-style: italic; color: var(--gruen); }
+  .section-sub { font-size: 15px; color: var(--grau); max-width: 380px; line-height: 1.7; }
+
+  .l-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linie); }
+  .l-card {
+    background: var(--weiss); padding: 44px 40px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .l-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--gruen);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .l-card:hover { background: var(--creme); }
+  .l-card:hover::before { transform: scaleX(1); }
+  .l-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px; font-weight: 600; color: var(--grau-hell);
+    letter-spacing: 0.15em; margin-bottom: 24px;
+  }
+  .l-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 700; color: var(--dunkel);
+    margin-bottom: 12px; line-height: 1.3;
+  }
+  .l-card p { font-size: 14px; color: var(--grau); line-height: 1.7; }
+
+  /* ── REFERENZEN ── */
+  .referenzen { padding: 100px 80px; background: var(--dunkel); }
+  .ref-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 2.8vw, 44px); font-weight: 400; color: var(--weiss); letter-spacing: -0.01em; margin-bottom: 12px; }
+  .ref-title em { font-style: italic; color: var(--gold); }
+  .ref-sub { font-size: 15px; color: var(--grau-hell); margin-bottom: 56px; }
+  .ref-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 220px; gap: 3px; }
+  .ref-card {
+    position: relative; overflow: hidden;
+  }
+  .ref-card-inner {
+    width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    transition: transform 0.5s ease;
+  }
+  .ref-card:hover .ref-card-inner { transform: scale(1.05); }
+  .ref-card.span-row { grid-row: 1 / -1; }
+  /* Simulated reference photos */
+  .r1 { background: linear-gradient(160deg, #b8c4bc 0%, #8aaa96 40%, #6b8f7c 100%); }
+  .r2 { background: linear-gradient(145deg, #d8d0c4 0%, #c0b4a4 50%, #a89880 100%); }
+  .r3 { background: linear-gradient(150deg, #c8d4cc 0%, #a4bab0 50%, #86a098 100%); }
+  .r4 { background: linear-gradient(155deg, #e0d8cc 0%, #c8bfb0 60%, #b0a494 100%); }
+  .r5 { background: linear-gradient(140deg, #bcc8c4 0%, #98b0aa 50%, #7a9490 100%); }
+  .ref-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px 24px 22px;
+    background: linear-gradient(transparent, rgba(17,17,16,0.75));
+    color: var(--weiss);
+  }
+  .ref-label strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .ref-label span { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+  .ref-cats {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px;
+  }
+  .ref-cat {
+    border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7);
+    padding: 7px 16px; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.04em; cursor: default;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .ref-cat:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── PHILOSOPHIE ── */
+  .philosophie { padding: 100px 80px; background: var(--hell); }
+  .phil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .phil-img {
+    aspect-ratio: 4/5;
+    background: linear-gradient(145deg, #c8d4c0 0%, #a0b8a8 40%, #7a9e8a 70%, #5a8270 100%);
+    position: relative;
+  }
+  .phil-img-badge {
+    position: absolute; bottom: -24px; right: -24px;
+    width: 140px; height: 140px;
+    background: var(--dunkel); color: var(--weiss);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .phil-img-badge strong { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 1; }
+  .phil-img-badge span { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+  .phil-right h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 2.5vw, 40px); font-weight: 400;
+    color: var(--dunkel); margin-bottom: 24px; line-height: 1.2; letter-spacing: -0.01em;
+  }
+  .phil-right h2 em { font-style: italic; color: var(--gruen); }
+  .phil-right > p { font-size: 15px; color: var(--grau); line-height: 1.8; margin-bottom: 40px; }
+  .phil-punkte { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .phil-punkte li { display: flex; gap: 16px; align-items: flex-start; font-size: 14px; color: var(--dunkel); }
+  .phil-punkte li::before { content: '→'; color: var(--gruen); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial { background: var(--creme); padding: 100px 80px; text-align: center; }
+  .t-stars { color: var(--gruen); font-size: 18px; letter-spacing: 3px; margin-bottom: 32px; }
+  .testimonial blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2vw, 28px); font-style: italic;
+    color: var(--dunkel); max-width: 680px; margin: 0 auto 28px;
+    line-height: 1.55; font-weight: 400;
+  }
+  .testimonial cite { font-size: 13px; color: var(--grau); font-style: normal; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ── KONTAKT ── */
+  .kontakt { padding: 100px 80px; background: var(--weiss); }
+  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+  .k-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 2.5vw, 40px); font-weight: 400;
+    color: var(--dunkel); margin-bottom: 20px; line-height: 1.2; letter-spacing: -0.01em;
+  }
+  .k-left h2 em { font-style: italic; color: var(--gruen); }
+  .k-left > p { font-size: 15px; color: var(--grau); line-height: 1.8; margin-bottom: 44px; }
+  .k-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .k-item {
+    display: flex; gap: 20px; align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--linie);
+  }
+  .k-item:first-child { border-top: 1px solid var(--linie); }
+  .k-icon { width: 40px; text-align: center; font-size: 17px; flex-shrink: 0; }
+  .k-text strong { display: block; font-size: 11px; color: var(--grau); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+  .k-text span { font-size: 15px; color: var(--dunkel); font-weight: 500; }
+
+  /* Form */
+  .k-form { display: flex; flex-direction: column; gap: 0; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 11px; font-weight: 600; color: var(--grau); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 13px 16px;
+    border: 1.5px solid #e0dcd6;
+    background: var(--hell); font-family: 'Inter', sans-serif;
+    font-size: 14px; color: var(--dunkel); outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gruen); }
+  .form-group textarea { min-height: 130px; resize: vertical; }
+  .submit-btn {
+    background: var(--dunkel); color: var(--weiss);
+    border: none; padding: 16px 32px;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+    letter-spacing: 0.04em; cursor: pointer;
+    transition: background 0.2s; text-align: left;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .submit-btn:hover { background: var(--mittel); }
+  .submit-btn::after { content: '→'; }
+
+  /* ── WEBDESIGN NOTICE ── */
+  .webdesign-notice {
+    background: var(--creme);
+    border-top: 3px solid var(--gruen);
+    padding: 24px 32px; margin-top: 56px;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .webdesign-notice p { font-size: 14px; color: var(--dunkel); line-height: 1.6; flex: 1; }
+  .webdesign-notice strong { color: var(--gruen); }
+  .webdesign-notice a { color: var(--dunkel); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--gruen); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--schwarz); padding: 64px 80px 40px; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+  .footer-brand .f-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .footer-mark { width: 36px; height: 36px; background: var(--weiss); color: var(--schwarz); font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .footer-name { color: var(--weiss); font-size: 13px; font-weight: 600; }
+  .footer-brand p { color: rgba(255,255,255,0.45); font-size: 13px; line-height: 1.8; max-width: 280px; }
+  .footer-col h4 { color: rgba(255,255,255,0.4); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li { color: rgba(255,255,255,0.55); font-size: 13px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--weiss); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 12px; }
+  .footer-bottom a { color: rgba(255,255,255,0.25); text-decoration: none; font-size: 12px; }
+  .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 0 24px; }
+    .nav-links, .nav-tel { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 60px 32px; }
+    .hero-right { min-height: 360px; grid-template-rows: 1fr 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .leistungen, .referenzen, .philosophie, .testimonial, .kontakt { padding: 72px 32px; }
+    .l-grid { grid-template-columns: 1fr 1fr; }
+    .ref-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .ref-card.span-row { grid-row: auto; }
+    .phil-grid { grid-template-columns: 1fr; gap: 48px; }
+    .phil-img { aspect-ratio: 16/9; }
+    .kontakt-grid { grid-template-columns: 1fr; gap: 56px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 48px 32px 32px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-mark">FH</div>
+    <div class="nav-wordmark">
+      <div class="nav-name">Fritz Hebeisen AG</div>
+      <div class="nav-sub">Maler · Gipser · Winterthur</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#referenzen">Referenzen</a>
+    <a href="#philosophie">Über uns</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <a href="tel:0522222523" class="nav-tel">052 222 25 23</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">
+      <div class="eyebrow-line"></div>
+      <span>Maler & Gipser · Winterthur</span>
+    </div>
+    <h1>
+      <strong>Ihr Maler</strong><br>
+      in Winterthur —<br>
+      <em>seit Jahrzehnten.</em>
+    </h1>
+    <p>Von der Farbberatung bis zur schlüsselfertigen Ausführung. Innen, aussen, ökologisch. Wir arbeiten sauber, termingerecht und immer mit dem richtigen Material für Ihr Zuhause.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-dark">Offerte anfragen</a>
+      <a href="#referenzen" class="btn-outline">Referenzen ansehen</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo">
+      <div class="hero-photo-inner p1"></div>
+      <div class="photo-label">Innensanierung</div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-inner p2"></div>
+      <div class="photo-label">Farbberatung</div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-inner p3"></div>
+      <div class="photo-label">Fassade</div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-inner p4"></div>
+      <div class="photo-label">Fugenlose Beläge</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">60+</div>
+    <div class="stat-label">Jahre Erfahrung</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Eigenleistung</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Öko</div>
+    <div class="stat-label">Zertifizierte Produkte</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">48h</div>
+    <div class="stat-label">Offerte garantiert</div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="leistungen" id="leistungen">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow"><div class="el"></div><span>Was wir tun</span></div>
+      <h2 class="section-title">Unsere <em>Leistungen</em></h2>
+    </div>
+    <p class="section-sub">Alle Maler- und Gipserarbeiten aus einer Hand — für Privat, Gewerbe und Sanierungen.</p>
+  </div>
+  <div class="l-grid">
+    <div class="l-card">
+      <div class="l-num">01</div>
+      <h3>Innen Renovation</h3>
+      <p>Ihre Innenräume wieder auffrischen oder neu gestalten — Anstriche, Tapeten, Farbberatung und mehr. Sauber ausgeführt, termingerecht abgeliefert.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-num">02</div>
+      <h3>Fassaden Renovation</h3>
+      <p>Witterungsbeständige Beschichtungen und Neuverputz für Ihren Aussenbau — langlebig, schützend und optisch überzeugend.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-num">03</div>
+      <h3>Schimmel Schutz</h3>
+      <p>Professionelle Behandlung und Vorbeugung von Schimmelbefall mit geprüften Schutzsystemen — nachhaltig und wirksam.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-num">04</div>
+      <h3>Ökologische Anstriche</h3>
+      <p>Emissionsarme, lösemittelfreie Farben (E.L.F.) und Wellnessfarben — auch für Allergiker. Gut für Ihre Gesundheit, gut für die Umwelt.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-num">05</div>
+      <h3>Fugenlose Beläge</h3>
+      <p>Moderne, nahtlose Beschichtungen für Böden, Wände und Bäder — pflegeleicht, langlebig und in vielen Oberflächen erhältlich.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-num">06</div>
+      <h3>Dekorativ & Kreativ</h3>
+      <p>Spachteltechniken, Lasuren, Strukturoberflächen und individuelle Gestaltung für besondere Räume und Akzentwände.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-num">07</div>
+      <h3>Innen Isolation</h3>
+      <p>Innenwärmedämmung und Isolationsputze — energetisch sinnvoll, raumklimaverbessernd und professionell verarbeitet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENZEN -->
+<section class="referenzen" id="referenzen">
+  <div class="section-eyebrow" style="margin-bottom: 16px;">
+    <div class="el" style="background: var(--gold);"></div>
+    <span style="color: var(--gold);">Ausgeführte Projekte</span>
+  </div>
+  <h2 class="ref-title">Unsere <em>Referenzen</em></h2>
+  <p class="ref-sub">Fassaden, Innenräume, Denkmalpflege und mehr — quer durch Winterthur und die Region.</p>
+
+  <div class="ref-grid">
+    <div class="ref-card span-row">
+      <div class="ref-card-inner r1"></div>
+      <div class="ref-label">
+        <strong>Fassaden-Renovation</strong>
+        <span>Mehrfamilienhaus · Winterthur</span>
+      </div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-inner r2"></div>
+      <div class="ref-label">
+        <strong>Innen-Gesamtsanierung</strong>
+        <span>Einfamilienhaus</span>
+      </div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-inner r3"></div>
+      <div class="ref-label">
+        <strong>Fugenlose Beschichtung</strong>
+        <span>Badezimmer</span>
+      </div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-inner r4"></div>
+      <div class="ref-label">
+        <strong>Denkmalpflege</strong>
+        <span>Altbausanierung</span>
+      </div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-inner r5"></div>
+      <div class="ref-label">
+        <strong>Dekorative Arbeit</strong>
+        <span>Wohnzimmer</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-cats">
+    <div class="ref-cat">Fassaden</div>
+    <div class="ref-cat">Innen Sanierung</div>
+    <div class="ref-cat">Einfamilienhäuser</div>
+    <div class="ref-cat">Dekorativ & Kreativ</div>
+    <div class="ref-cat">Denkmalpflege</div>
+    <div class="ref-cat">Fugenlose Beläge</div>
+    <div class="ref-cat">Tapezierarbeiten</div>
+    <div class="ref-cat">Schimmelschutz</div>
+  </div>
+</section>
+
+<!-- PHILOSOPHIE -->
+<section class="philosophie" id="philosophie">
+  <div class="phil-grid">
+    <div class="phil-img">
+      <div class="phil-img-badge">
+        <strong>60+</strong>
+        <span>Jahre in<br>Winterthur</span>
+      </div>
+    </div>
+    <div class="phil-right">
+      <div class="section-eyebrow" style="margin-bottom: 20px;"><div class="el"></div><span>Wer wir sind</span></div>
+      <h2>Handwerk mit <em>Haltung</em></h2>
+      <p>Fritz Hebeisen AG ist ein bewährter Malerbetrieb in Winterthur. Wir stehen für sorgfältige Ausführung, ehrliche Beratung und Materialien, die wir selbst guten Gewissens empfehlen können.</p>
+      <ul class="phil-punkte">
+        <li>Ökologische Produkte ohne schädliche Lösemittel — auch für Allergiker</li>
+        <li>Persönliche Beratung vor Ort — immer mit dem richtigen Ansprechpartner</li>
+        <li>Sorgfältige Abdeckung und fachgerechte Entsorgung</li>
+        <li>Koordination weiterer Handwerker (Elektriker, Maurer) bei Bedarf</li>
+        <li>Pünktliche Ausführung, klare Offerten ohne versteckte Kosten</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="t-stars">★★★★★</div>
+  <blockquote>
+    Herr Hebeisen hat unsere gesamte Wohnung renoviert — Anstriche, Tapeten, Farbberatung inklusive. Alles sauber, pünktlich und zu einem fairen Preis. Wir würden ihn ohne Zögern weiterempfehlen.
+  </blockquote>
+  <cite>Familie Bischoff, Winterthur-Veltheim</cite>
+</section>
+
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div class="kontakt-grid">
+    <div class="k-left">
+      <div class="section-eyebrow" style="margin-bottom: 20px;"><div class="el"></div><span>Kontakt</span></div>
+      <h2>Offerte <em>anfragen</em></h2>
+      <p>Schildern Sie uns Ihr Vorhaben — wir melden uns innert 48 Stunden mit einem unverbindlichen Angebot.</p>
+      <ul class="k-list">
+        <li class="k-item">
+          <div class="k-icon">📞</div>
+          <div class="k-text">
+            <strong>Telefon</strong>
+            <span>052 222 25 23</span>
+          </div>
+        </li>
+        <li class="k-item">
+          <div class="k-icon">✉️</div>
+          <div class="k-text">
+            <strong>E-Mail</strong>
+            <span>info@hebeisen-maler.ch</span>
+          </div>
+        </li>
+        <li class="k-item">
+          <div class="k-icon">📍</div>
+          <div class="k-text">
+            <strong>Adresse</strong>
+            <span>Weinbergstrasse 6, 8400 Winterthur</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="webdesign-notice">
+        <p>
+          Diese Seite ist ein <strong>kostenloser Entwurf</strong> von <strong>Yazan Hajir</strong> — individuell gestaltet für Fritz Hebeisen AG.<br>
+          Interesse? <a href="mailto:yazanhajir@outlook.com">yazanhajir@outlook.com</a> · <a href="tel:+41795570924">+41 79 557 09 24</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="k-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vorname</label>
+          <input type="text" placeholder="Max">
+        </div>
+        <div class="form-group">
+          <label>Nachname</label>
+          <input type="text" placeholder="Muster">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="email" placeholder="max@muster.ch">
+      </div>
+      <div class="form-group">
+        <label>Telefon</label>
+        <input type="tel" placeholder="079 000 00 00">
+      </div>
+      <div class="form-group">
+        <label>Leistung</label>
+        <select>
+          <option value="">Bitte wählen …</option>
+          <option>Innen Renovation</option>
+          <option>Fassaden Renovation</option>
+          <option>Schimmel Schutz</option>
+          <option>Ökologische Anstriche</option>
+          <option>Fugenlose Beläge</option>
+          <option>Dekorativ & Kreativ</option>
+          <option>Innen Isolation</option>
+          <option>Mehreres / Noch unklar</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Beschreibung</label>
+        <textarea placeholder="Beschreiben Sie kurz Ihr Vorhaben …"></textarea>
+      </div>
+      <button class="submit-btn">Offerte anfragen</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="f-logo">
+        <div class="footer-mark">FH</div>
+        <div class="footer-name">Fritz Hebeisen AG</div>
+      </div>
+      <p>Ihr Maler- und Gipserbetrieb in Winterthur und Umgebung. Sorgfältig, ökologisch, termingerecht.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Leistungen</h4>
+      <ul>
+        <li>Innen Renovation</li>
+        <li>Fassaden Renovation</li>
+        <li>Ökologische Anstriche</li>
+        <li>Fugenlose Beläge</li>
+        <li>Schimmel Schutz</li>
+        <li>Dekorativ & Kreativ</li>
+        <li>Innen Isolation</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="tel:0522222523">052 222 25 23</a></li>
+        <li><a href="mailto:info@hebeisen-maler.ch">info@hebeisen-maler.ch</a></li>
+        <li>Weinbergstrasse 6</li>
+        <li>8400 Winterthur</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Fritz Hebeisen AG · Winterthur</p>
+    <a href="mailto:yazanhajir@outlook.com">Webdesign-Entwurf: Yazan Hajir</a>
+  </div>
+</footer>
+
+</body>
+</html>
