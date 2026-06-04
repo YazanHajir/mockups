@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baumgartner Haustechnik — Heizung · Sanitär · Solar · Lüftung</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark: #0d1e2c;
+      --navy: #142839;
+      --accent: #1a6e4a;
+      --accent2: #2ecc8f;
+      --light: #f3f7f5;
+      --white: #fff;
+      --muted: #5a7367;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #1a2e3a; background: var(--white); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,30,44,0.97); backdrop-filter: blur(8px);
+      padding: 0 48px; height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 1.1rem; font-weight: 800; color: var(--white); letter-spacing: -0.2px; }
+    .logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.87rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--accent2); }
+    .nav-cta {
+      background: var(--accent); color: var(--white);
+      padding: 10px 22px; border-radius: 6px;
+      font-size: 0.85rem; font-weight: 700; text-decoration: none;
+    }
+
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(to right, rgba(13,30,44,0.96) 50%, rgba(13,30,44,0.4) 100%),
+        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding: 130px 48px 90px;
+    }
+    .hero-content { max-width: 620px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(46,204,143,0.12); border: 1px solid rgba(46,204,143,0.3);
+      color: var(--accent2); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 4px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800; color: var(--white);
+      line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--accent2); font-style: normal; }
+    .hero p {
+      font-size: 1.03rem; color: rgba(255,255,255,0.73);
+      line-height: 1.72; margin-bottom: 36px; max-width: 510px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+    .btn-p {
+      background: var(--accent); color: var(--white);
+      padding: 16px 30px; border-radius: 8px; font-weight: 700;
+      font-size: 0.93rem; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(26,110,74,0.45);
+    }
+    .btn-s {
+      border: 2px solid rgba(255,255,255,0.3); color: var(--white);
+      padding: 15px 26px; border-radius: 8px; font-weight: 600;
+      font-size: 0.93rem; text-decoration: none;
+    }
+    .hero-proof { display: flex; gap: 24px; flex-wrap: wrap; }
+    .proof-item { color: rgba(255,255,255,0.62); font-size: 0.82rem; }
+    .proof-item::before { content: '✓ '; color: var(--accent2); font-weight: 700; }
+
+    .trust {
+      background: var(--dark); padding: 24px 48px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 44px; flex-wrap: wrap;
+    }
+    .trust-item { color: rgba(255,255,255,0.62); font-size: 0.82rem; text-align: center; }
+    .trust-item strong { display: block; font-size: 1.65rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 4px; }
+    .trust-div { width: 1px; height: 34px; background: rgba(255,255,255,0.1); }
+
+    section { padding: 90px 48px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; color: var(--dark); letter-spacing: -0.4px; line-height: 1.17; margin-bottom: 14px; }
+    .sublead { font-size: 1.03rem; color: var(--muted); line-height: 1.72; max-width: 520px; margin-bottom: 48px; }
+
+    /* USP CARDS */
+    .usp-section { background: var(--light); }
+    .usp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .usp-card {
+      background: var(--white); border-radius: 12px;
+      padding: 28px 22px; border: 1px solid rgba(0,0,0,0.06);
+      text-align: center;
+      transition: box-shadow .3s, transform .3s;
+    }
+    .usp-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .usp-ico { font-size: 2rem; margin-bottom: 14px; }
+    .usp-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .usp-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* LEISTUNGEN */
+    .leistungen-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .leis-block {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+      display: flex; flex-direction: column;
+    }
+    .leis-img {
+      width: 100%; height: 200px;
+      object-fit: cover; display: block;
+    }
+    .leis-content { padding: 24px; background: var(--white); flex: 1; }
+    .leis-content h3 { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+    .leis-content p { font-size: 0.86rem; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+    .leis-items { display: flex; flex-wrap: wrap; gap: 6px; }
+    .leis-item {
+      background: var(--light); border-radius: 4px;
+      padding: 4px 10px; font-size: 0.75rem; font-weight: 600; color: var(--accent);
+    }
+
+    /* ÜBER UNS */
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-img {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.12);
+    }
+    .about-img img { width: 100%; height: auto; display: block; }
+    .about-text p { font-size: 0.96rem; color: #3a5060; line-height: 1.75; margin-bottom: 16px; }
+
+    /* REFERENZEN */
+    .refs { background: var(--light); }
+    .ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .ref-card { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.08); background: var(--white); }
+    .ref-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+    .ref-info { padding: 16px 18px; }
+    .ref-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .ref-info p { font-size: 0.8rem; color: var(--muted); }
+    .ref-tag {
+      display: inline-block; background: rgba(26,110,74,0.1);
+      color: var(--accent); font-size: 0.72rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 12px; margin-bottom: 6px;
+    }
+
+    /* TESTIMONIALS */
+    .testi-section { background: var(--dark); }
+    .testi-section .label { color: var(--accent2); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+    .testi-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 26px 22px;
+    }
+    .testi-stars { color: var(--accent2); font-size: 0.85rem; margin-bottom: 12px; }
+    .testi-card p { font-size: 0.9rem; color: rgba(255,255,255,0.78); line-height: 1.65; margin-bottom: 18px; }
+    .testi-author { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.45); }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, #0d4e34 100%);
+      padding: 80px 48px; text-align: center;
+    }
+    .cta-section h2 { color: var(--white); margin-bottom: 14px; }
+    .cta-section p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 36px; }
+    .btn-white {
+      background: var(--white); color: var(--accent);
+      padding: 16px 36px; border-radius: 8px; font-weight: 800;
+      font-size: 0.95rem; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+      display: inline-block; margin-bottom: 8px;
+    }
+    .cta-contacts { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+    .cta-contact { color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+    .cta-contact a { color: var(--white); font-weight: 700; text-decoration: none; }
+
+    footer {
+      background: var(--dark); padding: 36px 48px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    footer .logo { font-size: 1rem; }
+    footer p { color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 20px 60px; }
+      section { padding: 60px 20px; }
+      .usp-grid, .leistungen-grid, .grid2, .ref-grid, .testi-grid { grid-template-columns: 1fr; }
+      .trust { gap: 20px; padding: 20px; }
+      .cta-section { padding: 60px 20px; }
+      footer { padding: 28px 20px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Baumgartner <span>Haustechnik</span></div>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Offerte anfragen</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Neudorf · Kanton Luzern · Inhabergeführt</div>
+    <h1>Heizung. Solar. Sanitär.<br><em>Alles aus einer Hand.</em><br>Kein Stress.</h1>
+    <p>Ob Wärmepumpe, PV-Anlage, Badezimmersanierung oder Lüftung — bei Baumgartner bekommen Sie alles aus einer Hand. Persönlich betreut, sauber ausgeführt, auf den Termin gebracht.</p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-p">Kostenlose Beratung</a>
+      <a href="#leistungen" class="btn-s">Unsere Leistungen</a>
+    </div>
+    <div class="hero-proof">
+      <span class="proof-item">Inhabergeführt</span>
+      <span class="proof-item">Alles aus einer Hand</span>
+      <span class="proof-item">Zufriedene Stammkunden</span>
+      <span class="proof-item">Region Luzern</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-item"><strong>1</strong>Ansprechpartner</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>4</strong>Fachbereiche</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>100%</strong>Lokal</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>Schnell</strong>Termingerecht</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>Kein</strong>Callcenter</div>
+</div>
+
+<!-- USP -->
+<section class="usp-section">
+  <div class="container">
+    <div class="label">Warum Baumgartner</div>
+    <h2>Der Unterschied<br>liegt im Detail</h2>
+    <p class="sublead">Wir koordinieren, planen und führen alles selbst aus — so verlieren Sie keinen Nerv und keine Zeit bei der Suche nach mehreren Handwerkern.</p>
+    <div class="usp-grid">
+      <div class="usp-card">
+        <div class="usp-ico">🤝</div>
+        <h3>Ein Ansprechpartner</h3>
+        <p>Sie haben immer einen direkten Kontakt — kein Weitervermitteln, kein Wartelisten-Chaos.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-ico">🔑</div>
+        <h3>Alles aus einer Hand</h3>
+        <p>Heizung, Solar, Sanitär, Lüftung — wir führen alles selbst aus. Kein Subunternehmer.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-ico">📅</div>
+        <h3>Terminzuverlässig</h3>
+        <p>Wir kommen zum vereinbarten Termin. Was wir versprechen, halten wir — immer.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-ico">🏡</div>
+        <h3>Regional verwurzelt</h3>
+        <p>Wir kennen die Häuser, die Gemeinden und die Anforderungen in unserer Region.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="container">
+    <div class="label">Was wir machen</div>
+    <h2>Vier Fachbereiche.<br>Ein Betrieb.</h2>
+    <p class="sublead">Von der Einzelleistung bis zum Gesamtprojekt — wir planen und führen aus.</p>
+    <div class="leistungen-grid">
+      <div class="leis-block">
+        <img class="leis-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70" alt="Heizung Wärmepumpe">
+        <div class="leis-content">
+          <h3>🔥 Heizung & Wärmepumpen</h3>
+          <p>Heizungsersatz, Wärmepumpeninstallation, Holzpellets — wir beraten neutral und führen fachgerecht aus.</p>
+          <div class="leis-items">
+            <span class="leis-item">Wärmepumpe</span>
+            <span class="leis-item">Ölheizung Ersatz</span>
+            <span class="leis-item">Holzpellets</span>
+            <span class="leis-item">Wartung</span>
+          </div>
+        </div>
+      </div>
+      <div class="leis-block">
+        <img class="leis-img" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=70" alt="Solar PV">
+        <div class="leis-content">
+          <h3>☀️ Photovoltaik & Solar</h3>
+          <p>PV-Anlagen mit Speicher, thermische Solaranlagen für Warmwasser — wir planen, melden an und installieren.</p>
+          <div class="leis-items">
+            <span class="leis-item">PV-Anlage</span>
+            <span class="leis-item">Batteriespeicher</span>
+            <span class="leis-item">Thermisch</span>
+            <span class="leis-item">Anmeldung</span>
+          </div>
+        </div>
+      </div>
+      <div class="leis-block">
+        <img class="leis-img" src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=70" alt="Sanitär Bad">
+        <div class="leis-content">
+          <h3>💧 Sanitär & Bad</h3>
+          <p>Neuinstallation, Badsanierung, Wasseranschlüsse — zuverlässig ausgeführt, sauber hinterlassen.</p>
+          <div class="leis-items">
+            <span class="leis-item">Badsanierung</span>
+            <span class="leis-item">Neuinstallation</span>
+            <span class="leis-item">Reparaturen</span>
+            <span class="leis-item">Garteninfra</span>
+          </div>
+        </div>
+      </div>
+      <div class="leis-block">
+        <img class="leis-img" src="https://images.unsplash.com/photo-1581093804475-577d72e38aa0?w=600&q=70" alt="Lüftung">
+        <div class="leis-content">
+          <h3>💨 Lüftung & Klima</h3>
+          <p>Komfortlüftungsanlagen, Wohnraumlüftung und Klimatisierung — für gesundes Raumklima das Jahr hindurch.</p>
+          <div class="leis-items">
+            <span class="leis-item">Komfortlüftung</span>
+            <span class="leis-item">Wohnraumlüftung</span>
+            <span class="leis-item">Klimaanlage</span>
+            <span class="leis-item">Wartung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER UNS -->
+<section id="ueber-uns" style="background: var(--light);">
+  <div class="container">
+    <div class="grid2">
+      <div class="about-text">
+        <div class="label">Über uns</div>
+        <h2>Inhabergeführt.<br>Direkt. Verlässlich.</h2>
+        <p>Robert und Martin Baumgartner führen den Betrieb in Neudorf seit Jahren mit dem Anspruch, den sie selbst an Handwerker stellen würden: pünktlich, sauber, klar kommuniziert.</p>
+        <p>Wir glauben daran, dass ein Betrieb der alles selbst macht auch die Verantwortung dafür trägt. Keine Ausreden, kein Weiterschieben. Was wir zusagen, liefern wir.</p>
+        <p>Deshalb kommen unsere Kunden immer wieder — und empfehlen uns weiter. Nicht weil wir es ihnen sagen, sondern weil wir es verdienen.</p>
+      </div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=700&q=80" alt="Baumgartner Team">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENZEN -->
+<section class="refs" id="referenzen">
+  <div class="container">
+    <div class="label">Unsere Projekte</div>
+    <h2>Abgeschlossene Projekte<br>in der Region Luzern</h2>
+    <p class="sublead">Jede Situation ist einzigartig — deshalb planen wir jede Lösung von Grund auf neu. Hier einige Beispiele unserer Arbeit.</p>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <img class="ref-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70" alt="Wärmepumpe">
+        <div class="ref-info">
+          <span class="ref-tag">Heizung</span>
+          <h4>Wärmepumpe EFH Neuenkirch</h4>
+          <p>Komplettersatz Ölheizung, Luft-Wasser WP 10 kW</p>
+        </div>
+      </div>
+      <div class="ref-card">
+        <img class="ref-img" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=70" alt="Solar PV">
+        <div class="ref-info">
+          <span class="ref-tag">Solar</span>
+          <h4>PV-Anlage mit Speicher Sempach</h4>
+          <p>12 kWp Aufdachanlage, 10 kWh Speicher, Eigenverbrauch 85%</p>
+        </div>
+      </div>
+      <div class="ref-card">
+        <img class="ref-img" src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=70" alt="Bad Sanierung">
+        <div class="ref-info">
+          <span class="ref-tag">Sanitär</span>
+          <h4>Badsanierung MFH Sursee</h4>
+          <p>5 Badezimmer komplett saniert, 4 Wochen Projektzeit</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="container">
+    <div class="label">Kundenstimmen</div>
+    <h2 style="color:white;">Was unsere Kunden sagen</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>«Wärmepumpe und PV-Anlage wurden gemeinsam geplant und installiert. Kein Stress, keine Koordination zwischen Handwerkern — alles aus einer Hand. Genau so muss das laufen.»</p>
+        <div class="testi-author">Familie W., Neudorf LU</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>«Pünktlich, sauber, ehrlich. Das Badezimmer wurde auf den Tag genau fertig. Herr Baumgartner hat immer kommuniziert was als nächstes kommt — das schätze ich sehr.»</p>
+        <div class="testi-author">M. Brunner, Sempach LU</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>«Ich habe schon drei Projekte über Baumgartner gemacht. Heizung, Sanitär und Solar. Jedes Mal top. Weiterempfehlung absolut — in der Region gibt es keinen besseren.»</p>
+        <div class="testi-author">R. Moos, Sursee LU</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="kontakt">
+  <h2>Ihr nächstes Projekt<br>in guten Händen</h2>
+  <p>Kostenloses Erstgespräch — wir schauen uns Ihre Situation an<br>und geben Ihnen eine ehrliche Einschätzung.</p>
+  <a href="tel:+41419303340" class="btn-white">Anrufen: 041 930 33 40</a>
+  <div class="cta-contacts">
+    <div class="cta-contact">📧 <a href="mailto:info@baumgartner-neudorf.ch">info@baumgartner-neudorf.ch</a></div>
+    <div class="cta-contact">📍 Luzernerstrasse 35, 6025 Neudorf</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Baumgartner <span>Haustechnik</span></div>
+  <p>© 2025 R. & M. Baumgartner AG · Neudorf LU</p>
+  <p style="color:rgba(255,255,255,0.3);font-size:0.72rem;">Konzept: yazanhajir.ch</p>
+</footer>
+
+</body>
+</html>

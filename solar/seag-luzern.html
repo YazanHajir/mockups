@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEAG — Solar Energie Effizienz AG Luzern</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark: #0a1a2e;
+      --navy: #102236;
+      --accent: #0070c9;
+      --accent2: #34c0f0;
+      --green: #22a060;
+      --light: #f2f6fb;
+      --white: #fff;
+      --muted: #526880;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #1a2e42; background: var(--white); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,26,46,0.97); backdrop-filter: blur(8px);
+      padding: 0 48px; height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 1.15rem; font-weight: 800; color: var(--white); letter-spacing: -0.3px; }
+    .logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.87rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--accent2); }
+    .nav-cta {
+      background: var(--accent); color: var(--white);
+      padding: 10px 22px; border-radius: 6px;
+      font-size: 0.85rem; font-weight: 700; text-decoration: none;
+    }
+
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(to right, rgba(10,26,46,0.97) 50%, rgba(10,26,46,0.38) 100%),
+        url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding: 130px 48px 90px;
+    }
+    .hero-content { max-width: 620px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(52,192,240,0.12); border: 1px solid rgba(52,192,240,0.3);
+      color: var(--accent2); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 4px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800; color: var(--white);
+      line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--accent2); font-style: normal; }
+    .hero p {
+      font-size: 1.03rem; color: rgba(255,255,255,0.73);
+      line-height: 1.72; margin-bottom: 36px; max-width: 510px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+    .btn-p {
+      background: var(--accent); color: var(--white);
+      padding: 16px 30px; border-radius: 8px; font-weight: 700;
+      font-size: 0.93rem; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,112,201,0.42);
+    }
+    .btn-s {
+      border: 2px solid rgba(255,255,255,0.3); color: var(--white);
+      padding: 15px 26px; border-radius: 8px; font-weight: 600;
+      font-size: 0.93rem; text-decoration: none;
+    }
+    .hero-proof { display: flex; gap: 24px; flex-wrap: wrap; }
+    .proof-item { color: rgba(255,255,255,0.62); font-size: 0.82rem; }
+    .proof-item::before { content: '✓ '; color: var(--accent2); font-weight: 700; }
+
+    .trust {
+      background: var(--dark); padding: 24px 48px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 44px; flex-wrap: wrap;
+    }
+    .trust-item { color: rgba(255,255,255,0.62); font-size: 0.82rem; text-align: center; }
+    .trust-item strong { display: block; font-size: 1.65rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 4px; }
+    .trust-div { width: 1px; height: 34px; background: rgba(255,255,255,0.1); }
+
+    section { padding: 90px 48px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; color: var(--dark); letter-spacing: -0.4px; line-height: 1.17; margin-bottom: 14px; }
+    .sublead { font-size: 1.03rem; color: var(--muted); line-height: 1.72; max-width: 520px; margin-bottom: 48px; }
+
+    /* LEISTUNGEN */
+    .leistungen { background: var(--light); }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .svc {
+      background: var(--white); border-radius: 12px;
+      padding: 28px 24px; border: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .svc:hover { box-shadow: 0 10px 34px rgba(0,0,0,0.09); transform: translateY(-3px); }
+    .svc-ico {
+      width: 48px; height: 48px;
+      background: rgba(0,112,201,0.1); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 18px;
+    }
+    .svc h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+    .svc p { font-size: 0.86rem; color: var(--muted); line-height: 1.65; }
+    .svc-steps { margin-top: 14px; }
+    .svc-step { font-size: 0.78rem; color: var(--accent); font-weight: 600; padding: 3px 0; border-top: 1px solid rgba(0,112,201,0.1); }
+    .svc-step:first-child { border-top: none; }
+
+    /* REFERENZEN MIT DETAILS */
+    .ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .ref-card { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.08); background: var(--white); }
+    .ref-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+    .ref-info { padding: 18px; }
+    .ref-tag {
+      display: inline-block; background: rgba(0,112,201,0.1);
+      color: var(--accent); font-size: 0.72rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 12px; margin-bottom: 8px;
+    }
+    .ref-info h4 { font-size: 0.93rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .ref-info p { font-size: 0.8rem; color: var(--muted); }
+    .ref-info .ref-detail { font-size: 0.78rem; color: var(--green); font-weight: 600; margin-top: 8px; }
+
+    /* PARTNER */
+    .partner { background: var(--light); text-align: center; }
+    .partner-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 32px; margin-top: 36px; }
+    .partner-item {
+      background: var(--white); border-radius: 10px;
+      padding: 14px 24px; border: 1px solid rgba(0,0,0,0.07);
+      font-size: 0.85rem; font-weight: 700; color: var(--muted);
+    }
+
+    /* ZERTIFIKATE */
+    .zert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .zert-card {
+      background: var(--light); border-radius: 12px;
+      padding: 22px 18px; text-align: center; border: 2px solid transparent;
+      transition: border-color .3s;
+    }
+    .zert-card:hover { border-color: rgba(0,112,201,0.2); }
+    .zert-ico { font-size: 2rem; margin-bottom: 10px; }
+    .zert-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .zert-card p { font-size: 0.78rem; color: var(--muted); }
+
+    /* TESTIMONIALS */
+    .testi-section { background: var(--dark); }
+    .testi-section .label { color: var(--accent2); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+    .testi-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 26px 22px;
+    }
+    .testi-stars { color: #f5c842; font-size: 0.85rem; margin-bottom: 12px; }
+    .testi-card p { font-size: 0.9rem; color: rgba(255,255,255,0.78); line-height: 1.65; margin-bottom: 18px; }
+    .testi-author { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.45); }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, #004a8a 100%);
+      padding: 80px 48px; text-align: center;
+    }
+    .cta-section h2 { color: var(--white); margin-bottom: 14px; }
+    .cta-section p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 36px; }
+    .btn-white {
+      background: var(--white); color: var(--accent);
+      padding: 16px 36px; border-radius: 8px; font-weight: 800;
+      font-size: 0.95rem; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+      display: inline-block; margin-bottom: 8px;
+    }
+    .cta-contacts { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+    .cta-contact { color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+    .cta-contact a { color: var(--white); font-weight: 700; text-decoration: none; }
+
+    footer {
+      background: var(--dark); padding: 36px 48px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    footer .logo { font-size: 1rem; }
+    footer p { color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 20px 60px; }
+      section { padding: 60px 20px; }
+      .grid3, .ref-grid, .testi-grid, .zert-grid { grid-template-columns: 1fr; }
+      .trust { gap: 20px; padding: 20px; }
+      .cta-section { padding: 60px 20px; }
+      footer { padding: 28px 20px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">SE<span>AG</span> Luzern</div>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+    <li><a href="#zertifikate">Kompetenz</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Offerte anfragen</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Luzern · Suissetec & Swissolar zertifiziert</div>
+    <h1>Solaranlagen die<br><em>funktionieren.</em><br>Planung. Installation.<br><em>Service.</em></h1>
+    <p>Solar Energie Effizienz AG — Ihr zertifizierter Solarpartner in Luzern. Wir planen, installieren und betreuen Photovoltaik-Anlagen und Energieeffizienz-Massnahmen für Privat- und Gewerbekunden.</p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-p">Offerte anfordern</a>
+      <a href="#referenzen" class="btn-s">Referenzprojekte</a>
+    </div>
+    <div class="hero-proof">
+      <span class="proof-item">Suissetec zertifiziert</span>
+      <span class="proof-item">Swissolar Mitglied</span>
+      <span class="proof-item">Solar & Energieeffizienz</span>
+      <span class="proof-item">Region Luzern</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-item"><strong>6</strong>Referenzprojekte</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>2</strong>Fachbereiche</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>Suissetec</strong>Zertifiziert</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>Swissolar</strong>Mitglied</div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><strong>Luzern</strong>Lokaler Partner</div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="leistungen" id="leistungen">
+  <div class="container">
+    <div class="label">Unsere Leistungen</div>
+    <h2>Solar und Energie­effizienz —<br>aus einer Hand</h2>
+    <p class="sublead">Von der ersten Beratung bis zur Inbetriebnahme und langfristigen Betreuung — wir begleiten jedes Projekt vollständig.</p>
+    <div class="grid3">
+      <div class="svc">
+        <div class="svc-ico">☀️</div>
+        <h3>Photovoltaik — Aufdach</h3>
+        <p>Klassische Aufdachanlage für maximale Effizienz und einfache Wartung. Für Einfamilienhäuser bis Gewerbebauten.</p>
+        <div class="svc-steps">
+          <div class="svc-step">→ Beratung & Standortanalyse</div>
+          <div class="svc-step">→ Planung & Anmeldung</div>
+          <div class="svc-step">→ Installation & Inbetriebnahme</div>
+          <div class="svc-step">→ Wartung & Monitoring</div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-ico">🏛️</div>
+        <h3>Photovoltaik — Indach</h3>
+        <p>Integrierte Lösung für Neubauten und Sanierungen — ästhetisch und gleichzeitig funktional als Dacheindeckung.</p>
+        <div class="svc-steps">
+          <div class="svc-step">→ Architektur-Abstimmung</div>
+          <div class="svc-step">→ Statikprüfung</div>
+          <div class="svc-step">→ Nahtlose Integration</div>
+          <div class="svc-step">→ Wasserdichte Ausführung</div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-ico">🔋</div>
+        <h3>Batteriespeicher</h3>
+        <p>Maximieren Sie den Eigenverbrauch Ihrer PV-Anlage mit intelligentem Batteriespeicher — für echte Energieunabhängigkeit.</p>
+        <div class="svc-steps">
+          <div class="svc-step">→ Kapazitätsanalyse</div>
+          <div class="svc-step">→ Smart-Home Integration</div>
+          <div class="svc-step">→ Notstromfähigkeit</div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-ico">📊</div>
+        <h3>Energieeffizienz-Beratung</h3>
+        <p>GEAK-Ausweise, Fördergelder-Beratung, Energiekonzepte — unabhängig und auf Ihre Situation zugeschnitten.</p>
+        <div class="svc-steps">
+          <div class="svc-step">→ GEAK-Ausstellung</div>
+          <div class="svc-step">→ Fördergelder Schweiz</div>
+          <div class="svc-step">→ Massnahmenplanung</div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-ico">🚗</div>
+        <h3>Ladeinfrastruktur</h3>
+        <p>Laden Sie Ihr Elektroauto mit eigenem Solarstrom — wir installieren Ihre Ladestation und verbinden sie mit Ihrer PV-Anlage.</p>
+        <div class="svc-steps">
+          <div class="svc-step">→ Wallbox-Installation</div>
+          <div class="svc-step">→ PV-Kopplung</div>
+          <div class="svc-step">→ Lastmanagement</div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-ico">🔧</div>
+        <h3>Service & Wartung</h3>
+        <p>Langfristiger Ertrag durch regelmässige Wartung — wir prüfen, reinigen und optimieren Ihre Anlage.</p>
+        <div class="svc-steps">
+          <div class="svc-step">→ Jahresinspektion</div>
+          <div class="svc-step">→ Ertragsmonitoring</div>
+          <div class="svc-step">→ Störungsservice</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENZEN -->
+<section id="referenzen">
+  <div class="container">
+    <div class="label">Abgeschlossene Projekte</div>
+    <h2>Referenzen in<br>der Region Luzern</h2>
+    <p class="sublead">Sechs abgeschlossene Projekte — von der Aufdachanlage bis zur Indachintegration an verschiedenen Standorten.</p>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <img class="ref-img" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=70" alt="PV Aufdach Staffelweid">
+        <div class="ref-info">
+          <span class="ref-tag">Aufdach · Solar</span>
+          <h4>EFH Staffelweid</h4>
+          <p>Aufdach-PV-Anlage, 9 kWp, Eigenverbrauchsoptimierung</p>
+          <div class="ref-detail">→ Eigenverbrauch: 72% · Amortisation: 11 Jahre</div>
+        </div>
+      </div>
+      <div class="ref-card">
+        <img class="ref-img" src="https://images.unsplash.com/photo-1531316671082-38fe3f3edcf8?w=600&q=70" alt="PV Luzern">
+        <div class="ref-info">
+          <span class="ref-tag">Aufdach · Solar</span>
+          <h4>MFH Luzern</h4>
+          <p>Gemeinschaftsanlage 22 kWp mit Speicher, 4 Parteien</p>
+          <div class="ref-detail">→ Eigenverbrauch: 81% · CO₂-Einsparung: 8t/Jahr</div>
+        </div>
+      </div>
+      <div class="ref-card">
+        <img class="ref-img" src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&q=70" alt="Indach Meggen">
+        <div class="ref-info">
+          <span class="ref-tag">Indach · Integration</span>
+          <h4>Neubau Meggen LU</h4>
+          <p>Vollintegrierte Indachanlage 14 kWp, Neubau 2024</p>
+          <div class="ref-detail">→ Nahtlose Dachintegration · Plusenergiehaus</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZERTIFIKATE & KOMPETENZ -->
+<section class="leistungen" id="zertifikate">
+  <div class="container">
+    <div class="label">Unsere Kompetenz</div>
+    <h2>Zertifiziert. Geprüft.<br>Verlässlich.</h2>
+    <p class="sublead">Unsere Zertifikate sind der Beweis — nicht nur ein Versprechen.</p>
+    <div class="zert-grid">
+      <div class="zert-card">
+        <div class="zert-ico">🏆</div>
+        <h4>Suissetec</h4>
+        <p>Gebäudetechnik-Verband Schweiz — Qualitätszertifizierung für Fachbetriebe</p>
+      </div>
+      <div class="zert-card">
+        <div class="zert-ico">☀️</div>
+        <h4>Swissolar</h4>
+        <p>Nationaler Branchenverband für Solarenergie — zertifizierter Installateur</p>
+      </div>
+      <div class="zert-card">
+        <div class="zert-ico">📋</div>
+        <h4>GEAK Experte</h4>
+        <p>Zertifizierter Gebäudeenergieausweis-Experte für unabhängige Energieberatung</p>
+      </div>
+      <div class="zert-card">
+        <div class="zert-ico">🔌</div>
+        <h4>NIV-Fachbetrieb</h4>
+        <p>Zugelassener Elektroinstallateur für Netzanschluss und Inbetriebnahme</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="container">
+    <div class="label">Kundenstimmen</div>
+    <h2 style="color:white;">Was unsere Kunden sagen</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>«Die Beratung war kompetent und ohne Verkaufsdruck. Die Anlage läuft seit einem Jahr problemlos — der Ertrag entspricht exakt der Prognose. Klare Empfehlung.»</p>
+        <div class="testi-author">Familie K., Udligenswil LU</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>«Indachanlage am Neubau — alles hat perfekt geklappt. Handwerker pünktlich, saubere Ausführung, Dach ist dicht. Und der Energieertrag übertrifft die Erwartungen.»</p>
+        <div class="testi-author">B. Wyrsch, Meggen LU</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>«Wir haben mehrere Offerten eingeholt. SEAG war nicht die günstigste — aber die einzige die uns wirklich erklärt hat was wir brauchen. Das war den Unterschied wert.»</p>
+        <div class="testi-author">R. Meier, Hildisrieden LU</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="kontakt">
+  <h2>Bereit für Ihre<br>eigene Solaranlage?</h2>
+  <p>Kostenlose Erstberatung und unverbindliche Offerte —<br>wir analysieren Ihr Dach und zeigen Ihnen das Potenzial.</p>
+  <a href="tel:+41412590180" class="btn-white">Jetzt anrufen: 041 259 01 80</a>
+  <div class="cta-contacts">
+    <div class="cta-contact">📧 <a href="mailto:info@seag.lu">info@seag.lu</a></div>
+    <div class="cta-contact">📍 Täschmattstrasse 10, 6015 Luzern</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">SE<span>AG</span> Luzern</div>
+  <p>© 2025 Solar Energie Effizienz AG · Luzern</p>
+  <p style="color:rgba(255,255,255,0.3);font-size:0.72rem;">Konzept: yazanhajir.ch</p>
+</footer>
+
+</body>
+</html>
